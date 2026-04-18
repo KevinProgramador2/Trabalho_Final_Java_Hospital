@@ -1,4 +1,4 @@
-package br.com.serratec.conexao;
+package br.com.hospital.conexao;
 
 import java.sql.Connection;
 

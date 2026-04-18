@@ -1,4 +1,4 @@
-package br.com.serratec.conexao;
+package br.com.hospital.conexao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,7 +23,7 @@ public class ConnectionFactory {
                 throw new RuntimeException("Conexão retornou null");
             }
 
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Problemas no Driver ou senha incorreta do banco");
             e.printStackTrace();
             throw new RuntimeException("Erro ao conectar no banco", e);

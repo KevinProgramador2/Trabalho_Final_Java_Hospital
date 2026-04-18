@@ -1,4 +1,4 @@
-package br.com.serratec.model;
+package br.com.hospital.model;
 
 public class Atendimento {
 

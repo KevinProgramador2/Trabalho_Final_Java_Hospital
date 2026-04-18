@@ -1,4 +1,4 @@
-package br.com.serratec.persistence;
+package br.com.hospital.model;
 
 public class Hospital {
     protected String cpnj;

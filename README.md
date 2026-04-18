@@ -49,5 +49,5 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
 
 1. Clone o repositório:
    ```bash
-   git clone [https://github.com/KevinProgramado2/NOME_DO_REPOSITORIO.git](https://github.com/KevinProgramado2/NOME_DO_REPOSITORIO.git)
+   git clone [https://github.com/KevinProgramado2/NOME_DO_REPOSITORIO.git](https://github.com/KevinProgramado2/Trabalho_Final_Java_Hospital.git)
    ```

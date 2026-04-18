@@ -36,7 +36,7 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
 
 | Foto | Usuário | Função (Exemplo) |
 | :---: | :--- | :--- |
-| <img src="https://github.com/KevinProgramado2.png" width="60px;"/> | [**KevinProgramado2**](https://github.com/KevinProgramador2) | Fullstack Developer |
+| <img src="https://github.com/KevinProgramador2.png" width="60px;"/> | [**KevinProgramado2**](https://github.com/KevinProgramador2) | Fullstack Developer |
 | <img src="https://github.com/gabrielamontescoelho.png" width="60px;"/> | [**gabrielamontescoelho**](https://github.com/gabrielamontescoelho) | Fullstack Developerr |
 | <img src="https://github.com/nathaliaa-qa.png" width="60px;"/> | [**nathaliaa-qa**](https://github.com/nathaliaa-qa) | Fullstack Developer |
 | <img src="https://github.com/Matheuscmfranca.png" width="60px;"/> | [**Matheuscmfranca**](https://github.com/Matheuscmfranca) | Fullstack Developer |
@@ -48,4 +48,4 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
 
 1. Clone o repositório:
    ```bash
-   git clone [https://github.com/KevinProgramado2/Trabalho_Final_Java_Hospital.git]
+   git clone [https://github.com/KevinProgramador2/Trabalho_Final_Java_Hospital.git]

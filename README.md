@@ -1,4 +1,4 @@
-# 🏥 Sistema de Gestão Hospitalar
+# 🏥 Sistema Hospitalar
 
 > Integração robusta de dados clínicos e administrativos utilizando PostgreSQL.
 
@@ -8,9 +8,9 @@ Este projeto consiste em um sistema para gerenciamento hospitalar, focado na efi
 
 ## 🚀 Tecnologias Utilizadas
 
-- **Linguagem:** [Java \ SQL ]
-- **Banco de Dados:** PostgreSQL 🐘
-- **Versionamento:** Git & GitHub
+* *Linguagem:* [Java \ SQL]
+* *Banco de Dados:* PostgreSQL 🐘
+* *Versionamento:* Git & GitHub
 
 ## 🛠️ Funcionalidades principais
 
@@ -22,12 +22,11 @@ Este projeto consiste em um sistema para gerenciamento hospitalar, focado na efi
 
 ## 📊 Estrutura do Banco de Dados
 
-O projeto utiliza o **PostgreSQL** com foco em normalização para evitar redundância. As principais entidades são:
-
-- `pacientes`
-- `medicos`
-- `consultas`
-- `prontuarios`
+O projeto utiliza o *PostgreSQL* com foco em normalização para evitar redundância. As principais entidades são:
+* pacientes
+* medicos
+* consultas
+* prontuarios
 
 ---
 
@@ -35,13 +34,13 @@ O projeto utiliza o **PostgreSQL** com foco em normalização para evitar redund
 
 Agradecemos às seguintes pessoas que contribuíram para este projeto:
 
-|                                  Foto                                  | Usuário                                                             | Função (Exemplo)       |
-| :--------------------------------------------------------------------: | :------------------------------------------------------------------ | :--------------------- |
-|   <img src="https://github.com/KevinProgramado2.png" width="60px;"/>   | [**KevinProgramado2**](https://github.com/KevinProgramado2)         | Fullstack Developer    |
-| <img src="https://github.com/gabrielamontescoelho.png" width="60px;"/> | [**gabrielamontescoelho**](https://github.com/gabrielamontescoelho) | Backend Developer      |
-|     <img src="https://github.com/nathaliaa-qa.png" width="60px;"/>     | [**nathaliaa-qa**](https://github.com/nathaliaa-qa)                 | Quality Assurance (QA) |
-|   <img src="https://github.com/Matheuscmfranca.png" width="60px;"/>    | [**Matheuscmfranca**](https://github.com/Matheuscmfranca)           | Database Administrator |
-|        <img src="https://github.com/nisgri.png" width="60px;"/>        | [**nisgri**](https://github.com/nisgri)                             | Frontend Developer     |
+| Foto | Usuário | Função (Exemplo) |
+| :---: | :--- | :--- |
+| <img src="https://github.com/KevinProgramador2.png" width="60px;"/> | [*KevinProgramador2*](https://github.com/KevinProgramador2) | Fullstack Developer |
+| <img src="https://github.com/gabrielamontescoelho.png" width="60px;"/> | [*gabrielamontescoelho*](https://github.com/gabrielamontescoelho) | Fullstack Developer |
+| <img src="https://github.com/nathaliaa-qa.png" width="60px;"/> | [*nathaliaa-qa*](https://github.com/nathaliaa-qa) | Fullstack Developer |
+| <img src="https://github.com/Matheuscmfranca.png" width="60px;"/> | [*Matheuscmfranca*](https://github.com/Matheuscmfranca) | Fullstack Developer |
+| <img src="https://github.com/nisgri.png" width="60px;"/> | [*nisgri*](https://github.com/nisgri) | Fullstack Developer |
 
 ---
 
@@ -49,5 +48,4 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
 
 1. Clone o repositório:
    ```bash
-   git clone [https://github.com/KevinProgramado2/NOME_DO_REPOSITORIO.git](https://github.com/KevinProgramado2/Trabalho_Final_Java_Hospital.git)
-   ```
+   git clone [https://github.com/KevinProgramado2/Trabalho_Final_Java_Hospital.git]

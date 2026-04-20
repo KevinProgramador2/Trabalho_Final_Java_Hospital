@@ -11,11 +11,11 @@ public class Ala {
     private Integer leitosDisponiveis;
 
     public Ala(Integer id, String tipo, Enfermeiro responsavel, Integer quantidadeLeitos) {
-        this.id= id;
+        this.id = id;
         this.tipo = tipo;
         this.responsavel = responsavel;
         this.leitos = new ArrayList<>();
-        this.leitosDisponiveis= quantidadeLeitos;
+        this.leitosDisponiveis = quantidadeLeitos;
     }
 
     @Override
@@ -69,9 +69,9 @@ public class Ala {
     }
 
     public Integer leitosDisponiveis(List<Leito> leitos) {
-        leitosDisponiveis= 0;
+        leitosDisponiveis = 0;
         for (Leito leito : leitos) {
-            if(leito.getStatus()== StatusLeito.LIVRE)
+            if (leito.getStatus() == StatusLeito.LIVRE)
                 this.leitosDisponiveis++;
         }
 

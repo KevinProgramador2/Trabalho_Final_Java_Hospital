@@ -1,8 +1,11 @@
 package br.com.hospital.persistence;
 
-//Responsável por criar, escrever e ler o arquivo
-public class GerenciadorArquivos {
+public class LeituraFaturaCsv {
     public static void main(String[] args) {
+        try {
 
+        } catch (Exception e) {
+
+        }
     }
 }

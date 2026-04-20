@@ -11,7 +11,8 @@ public class Fatura {
     private StatusCobranca status;
     private FormaPagamento formaPagamento;
     private Servico servico;
-    
+    private NotaFiscal notaFiscal;
+
     public Fatura(Integer id, Pagador pagador, Double valor, LocalDate dataEmissao, LocalDate dataVencimento,
             StatusCobranca status, FormaPagamento formaPagamento, Servico servico) {
         this.id = id;
@@ -25,7 +26,7 @@ public class Fatura {
     }
 
     public void pagar(FormaPagamento formaPagamento) {
-        status= StatusCobranca.PAGO;
+        status = StatusCobranca.PAGO;
     }
-    
+
 }

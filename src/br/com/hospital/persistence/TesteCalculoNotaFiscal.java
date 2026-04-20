@@ -14,7 +14,7 @@ public class TesteCalculoNotaFiscal {
 
         NotaFiscal nFiscal = new NotaFiscal();
 
-        Paciente p = new Paciente("Rogerio", "123", "123", "Rua A", LocalDate.now(), 1);
+        Paciente p = new Paciente("Rogerio", "123", "321", "Rua A", LocalDate.now(), 1);
 
         Fatura f = new Fatura(1, p, 5000.0, LocalDate.of(2026, 04, 20), LocalDate.of(2027, 10, 10),
                 StatusCobranca.PENDENTE, FormaPagamento.PIX, Servico.ATENDIMENTO);

@@ -1,3 +1,214 @@
-CREATE table paciente (
-    
+CREATE TABLE pessoa (
+  id INT PRIMARY KEY,
+  nome VARCHAR(100),
+  cpf VARCHAR(14) UNIQUE
+);
+
+
+
+CREATE TABLE hospital (
+  id INT PRIMARY KEY,
+  nome VARCHAR(100),
+  cnpj VARCHAR(18) UNIQUE
+);
+
+
+
+CREATE TABLE plano (
+  id INT PRIMARY KEY,
+  nome VARCHAR(100) UNIQUE,
+  telefone VARCHAR(20),
+  cobertura VARCHAR(50),
+  data_credenciamento DATE
+);
+
+
+
+
+
+
+CREATE TABLE hospital_plano (
+  hospital_id INT,
+  plano_id INT,
+  PRIMARY KEY (hospital_id, plano_id),
+  FOREIGN KEY (hospital_id) REFERENCES hospital(id),
+  FOREIGN KEY (plano_id) REFERENCES plano(id)
+);
+
+
+
+
+
+
+
+
+CREATE TABLE paciente (
+  id INT PRIMARY KEY,
+  pessoa_id INT UNIQUE,
+  FOREIGN KEY (pessoa_id) REFERENCES pessoa(id)
+);
+
+
+
+
+
+CREATE TABLE medico (
+  id INT PRIMARY KEY,
+  crm VARCHAR(20) UNIQUE,
+  especialidade VARCHAR(100),
+  pessoa_id INT UNIQUE,
+  FOREIGN KEY (pessoa_id) REFERENCES pessoa(id)
+);
+
+
+
+
+
+
+CREATE TABLE enfermeira (
+  id INT PRIMARY KEY,
+  cre VARCHAR(20) UNIQUE,
+  turno VARCHAR(20),
+  pessoa_id INT UNIQUE,
+  chefe_id INT,
+  FOREIGN KEY (pessoa_id) REFERENCES pessoa(id),
+  FOREIGN KEY (chefe_id) REFERENCES enfermeira(id)
+);
+
+
+
+
+
+CREATE TABLE ala (
+  id INT PRIMARY KEY,
+  tipo VARCHAR(50),
+  numero_leitos_disponiveis INT,
+  hospital_id INT,
+  enfermeira_id INT UNIQUE,
+  FOREIGN KEY (hospital_id) REFERENCES hospital(id),
+  FOREIGN KEY (enfermeira_id) REFERENCES enfermeira(id)
+);
+
+
+
+
+CREATE TABLE leito (
+  id INT PRIMARY KEY,
+  identificador VARCHAR(50) UNIQUE,
+  status VARCHAR(30),
+  ala_id INT,
+  FOREIGN KEY (ala_id) REFERENCES ala(id)
+);
+
+
+
+
+
+
+
+
+
+CREATE TABLE atendimento (
+  id INT PRIMARY KEY,
+  data_hora TIMESTAMP,
+  tipo VARCHAR(30),
+  status VARCHAR(30),
+  observacoes TEXT,
+  paciente_id INT,
+  medico_id INT,
+  FOREIGN KEY (paciente_id) REFERENCES paciente(id),
+  FOREIGN KEY (medico_id) REFERENCES medico(id)
+);
+
+
+
+
+
+
+CREATE TABLE medicamento (
+  id INT PRIMARY KEY,
+  nome VARCHAR(100)
+);
+
+
+
+
+CREATE TABLE prescricao (
+  id INT PRIMARY KEY,
+  data DATE,
+  dosagem VARCHAR(50),
+  atendimento_id INT,
+  medicamento_id INT,
+  FOREIGN KEY (atendimento_id) REFERENCES atendimento(id),
+  FOREIGN KEY (medicamento_id) REFERENCES medicamento(id)
+);
+
+
+
+CREATE TABLE laboratorio (
+  id INT PRIMARY KEY,
+  nome VARCHAR(100),
+  tipo VARCHAR(30)
+);
+
+
+
+
+
+
+CREATE TABLE exame (
+  id INT PRIMARY KEY,
+  tipo VARCHAR(50),
+  custo DECIMAL(10,2),
+  descricao TEXT,
+  resultado VARCHAR(30),
+  data_solicitacao TIMESTAMP,
+  data_resultado TIMESTAMP,
+  arquivo_laudo VARCHAR(255),
+  paciente_id INT,
+  medico_id INT,
+  laboratorio_id INT,
+  FOREIGN KEY (paciente_id) REFERENCES paciente(id),
+  FOREIGN KEY (medico_id) REFERENCES medico(id),
+  FOREIGN KEY (laboratorio_id) REFERENCES laboratorio(id)
+);
+
+
+
+
+
+CREATE TABLE internacao (
+  id INT PRIMARY KEY,
+  data_entrada DATE,
+  data_saida DATE,
+  paciente_id INT,
+  leito_id INT,
+  FOREIGN KEY (paciente_id) REFERENCES paciente(id),
+  FOREIGN KEY (leito_id) REFERENCES leito(id)
+);
+
+CREATE TABLE fatura (
+  id INT PRIMARY KEY,
+  numero VARCHAR(50) UNIQUE,
+  valor DECIMAL(10,2),
+  data_emissao DATE,
+  data_vencimento DATE,
+  status VARCHAR(30),
+  forma_pagamento VARCHAR(30),
+  paciente_id INT,
+  FOREIGN KEY (paciente_id) REFERENCES paciente(id)
+);
+CREATE TABLE nota_fiscal (
+  id INT PRIMARY KEY,
+  nome_emissor VARCHAR(100) NOT NULL,
+  nome_paciente VARCHAR(100) NOT NULL,
+  descricao TEXT,
+  valor_bruto DECIMAL(10,2) NOT NULL,
+  iss DECIMAL(10,2) NOT NULL,
+  pis DECIMAL(10,2) NOT NULL,
+  cofins DECIMAL(10,2) NOT NULL,
+  irpj DECIMAL(10,2) NOT NULL,
+  csll DECIMAL(10,2) NOT NULL,
+  fatura_id INT UNIQUE NOT NULL,
+  FOREIGN KEY (fatura_id) REFERENCES fatura(id)
 );

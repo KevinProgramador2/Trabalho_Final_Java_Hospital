@@ -1,6 +1,7 @@
 package br.com.hospital.model;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 // exame foi separado de laudo para fins de facilitar
 // e porque somente Laudo depende de Exame, e não vice-versa.
@@ -8,21 +9,26 @@ public class Exame {
     private Integer id;
     private Paciente paciente;
     private Laboratorio laboratorio;
-    private LocalDate dataSolicitacao;
+    private LocalDateTime dataSolicitacao;
     private Medico solicitante;
-    private String tipo;
-    private Double custo;
+    private Medico medicoResponsavel;
+    private TipoExame tipo;
+    private BigDecimal custo;
     private Laudo laudo;
     
-    public Exame(Integer id, Paciente paciente, Laboratorio laboratorio, LocalDate dataSolicitacao, Medico solicitante, String tipo,
-            Double custo) {
-        this.id= id;
+    
+
+    public Exame(Integer id, Paciente paciente, Laboratorio laboratorio, LocalDateTime dataSolicitacao,
+            Medico solicitante, Medico medicoResponsavel, TipoExame tipo, BigDecimal custo, Laudo laudo) {
+        this.id = id;
         this.paciente = paciente;
         this.laboratorio = laboratorio;
         this.dataSolicitacao = dataSolicitacao;
         this.solicitante = solicitante;
+        this.medicoResponsavel = medicoResponsavel;
         this.tipo = tipo;
         this.custo = custo;
+        this.laudo = laudo;
     }
 
     @Override
@@ -47,11 +53,11 @@ public class Exame {
         this.laboratorio = laboratorio;
     }
 
-    public LocalDate getDataSolicitacao() {
+    public LocalDateTime getDataSolicitacao() {
         return dataSolicitacao;
     }
 
-    public void setDataSolicitacao(LocalDate dataSolicitacao) {
+    public void setDataSolicitacao(LocalDateTime dataSolicitacao) {
         this.dataSolicitacao = dataSolicitacao;
     }
 
@@ -63,20 +69,28 @@ public class Exame {
         this.solicitante = solicitante;
     }
 
-    public String getTipo() {
+    public TipoExame getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoExame tipo) {
         this.tipo = tipo;
     }
 
-    public Double getCusto() {
+    public BigDecimal getCusto() {
         return custo;
     }
 
-    public void setCusto(Double custo) {
+    public void setCusto(BigDecimal custo) {
         this.custo = custo;
+    }
+
+    public Medico getMedicoResponsavel() {
+        return medicoResponsavel;
+    }
+
+    public void setMedicoResponsavel(Medico medicoResponsavel) {
+        this.medicoResponsavel = medicoResponsavel;
     }
 
     public Laudo getLaudo() {

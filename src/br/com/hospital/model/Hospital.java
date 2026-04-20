@@ -5,20 +5,20 @@ import java.util.List;
 
 public class Hospital {
     protected Integer id;
-    protected String cpnj;
+    protected String cnpj;
     protected List<Ala> alas;
     protected List<PlanoSaude> planosSaude;
     
-    public Hospital(Integer id, String cpnj) {
+    public Hospital(Integer id, String cnpj) {
         this.id= id;
-        this.cpnj = cpnj;
+        this.cnpj = cnpj;
         this.alas = new ArrayList<>();
         this.planosSaude = new ArrayList<>();
     }
 
     @Override
     public String toString() {
-        return "Hospital [id=" + id + ", cpnj=" + cpnj + ", alas=" + alas + ", planosSaude=" + planosSaude + "]";
+        return "Hospital [id=" + id + ", cnpj=" + cnpj + ", alas=" + alas + ", planosSaude=" + planosSaude + "]";
     }
 
     public Integer getId() {
@@ -29,12 +29,12 @@ public class Hospital {
         this.id = id;
     }
     
-    public String getCpnj() {
-        return cpnj;
+    public String getCnpj() {
+        return cnpj;
     }
 
-    public void setCpnj(String cpnj) {
-        this.cpnj = cpnj;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
     public List<Ala> getAlas() {

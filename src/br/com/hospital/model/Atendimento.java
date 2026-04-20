@@ -1,6 +1,7 @@
 package br.com.hospital.model;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,13 +9,13 @@ public class Atendimento {
     private Integer id;
     private Paciente paciente;
     private Medico medico;
-    private LocalDate dataAtendimento;
+    private LocalDateTime dataAtendimento;
     private TipoAtendimento tipo;
     private StatusAtendimento status;
     private String observacao;
-    private List<Medicamentos> medicamentos;
+    private List<Medicamento> medicamentos;
     
-    public Atendimento(Integer id, Paciente paciente, Medico medico, LocalDate dataAtendimento, TipoAtendimento tipo,
+    public Atendimento(Integer id, Paciente paciente, Medico medico, LocalDateTime dataAtendimento, TipoAtendimento tipo,
             StatusAtendimento status, String observacao) {
         this.id= id;
         this.paciente = paciente;
@@ -56,11 +57,11 @@ public class Atendimento {
         this.medico = medico;
     }
 
-    public LocalDate getDataAtendimento() {
+    public LocalDateTime getDataAtendimento() {
         return dataAtendimento;
     }
 
-    public void setDataAtendimento(LocalDate dataAtendimento) {
+    public void setDataAtendimento(LocalDateTime dataAtendimento) {
         this.dataAtendimento = dataAtendimento;
     }
 
@@ -88,15 +89,15 @@ public class Atendimento {
         this.observacao = observacao;
     }
 
-    public List<Medicamentos> getMedicamentos() {
+    public List<Medicamento> getMedicamentos() {
         return medicamentos;
     }
 
-    public void setMedicamentos(List<Medicamentos> medicamentos) {
+    public void setMedicamentos(List<Medicamento> medicamentos) {
         this.medicamentos = medicamentos;
     }
 
-    public void prescreverMedicamento(Medicamentos medicamento) {
+    public void prescreverMedicamento(Medicamento medicamento) {
         this.medicamentos.add(medicamento);
     }
 

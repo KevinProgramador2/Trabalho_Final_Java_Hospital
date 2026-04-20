@@ -5,23 +5,20 @@ import java.util.List;
 
 public class Ala {
     private Integer id;
-    private String tipo;
+    private TipoAla tipo;
     private Enfermeiro responsavel;
     private List<Leito> leitos;
-    private Integer leitosDisponiveis;
 
-    public Ala(Integer id, String tipo, Enfermeiro responsavel, Integer quantidadeLeitos) {
-        this.id= id;
+    public Ala(Integer id, TipoAla tipo, Enfermeiro responsavel) {
+        this.id = id;
         this.tipo = tipo;
         this.responsavel = responsavel;
         this.leitos = new ArrayList<>();
-        this.leitosDisponiveis= quantidadeLeitos;
     }
 
     @Override
     public String toString() {
-        return "Ala [id=" + id + ", tipo=" + tipo + ", responsavel=" + responsavel + ", leitosDisponiveis="
-                + leitosDisponiveis(leitos) + "]";
+        return "Ala [id=" + id + ", tipo=" + tipo + ", responsavel=" + responsavel +", leitosDisponiveis=" + getLeitosDisponiveis() + "]";
     }
 
     public Integer getId() {
@@ -32,11 +29,11 @@ public class Ala {
         this.id = id;
     }
 
-    public String getTipo() {
+    public TipoAla getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoAla tipo) {
         this.tipo = tipo;
     }
 
@@ -56,26 +53,22 @@ public class Ala {
         this.leitos = leitos;
     }
 
-    public Integer getLeitosDisponiveis() {
-        return leitosDisponiveis;
-    }
-
-    public void setLeitosDisponiveis(Integer leitosDisponiveis) {
-        this.leitosDisponiveis = leitosDisponiveis;
-    }
 
     public void adicionarLeito(Leito leito) {
         this.leitos.add(leito);
     }
 
-    public Integer leitosDisponiveis(List<Leito> leitos) {
-        leitosDisponiveis= 0;
+    public Integer getLeitosDisponiveis() {
+        int count = 0;
         for (Leito leito : leitos) {
-            if(leito.getStatus()== StatusLeito.LIVRE)
-                this.leitosDisponiveis++;
-        }
+            if (leito.getStatus() == StatusLeito.LIVRE) {
+                count++;
+            }
+    }
+    return count;
+}
 
-        return leitosDisponiveis;
+    
     }
 
-}
+

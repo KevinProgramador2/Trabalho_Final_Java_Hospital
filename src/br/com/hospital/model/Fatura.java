@@ -1,18 +1,19 @@
 package br.com.hospital.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Fatura {
     private Integer id;
     private Pagador pagador;
-    private Double valor;
+    private BigDecimal valor;
     private LocalDate dataEmissao;
     private LocalDate dataVencimento;
     private StatusCobranca status;
     private FormaPagamento formaPagamento;
     private Servico servico;
     
-    public Fatura(Integer id, Pagador pagador, Double valor, LocalDate dataEmissao, LocalDate dataVencimento,
+    public Fatura(Integer id, Pagador pagador, BigDecimal valor, LocalDate dataEmissao, LocalDate dataVencimento,
             StatusCobranca status, FormaPagamento formaPagamento, Servico servico) {
         this.id = id;
         this.pagador = pagador;

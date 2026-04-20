@@ -10,14 +10,21 @@ public class Paciente extends Pessoa implements Pagador{
         this.id= id;
     }
 
+
     @Override
     public Integer getIdentificador() {
         return id;
     }
 
-    @Override
-    public String getNome() {
-        return super.getNome();
+
+    public Integer getId() {
+        return id;
+    }
+
+
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 }

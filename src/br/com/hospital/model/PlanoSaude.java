@@ -27,6 +27,10 @@ public class PlanoSaude implements Pagador{
         this.id = id;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -65,4 +69,6 @@ public class PlanoSaude implements Pagador{
         return nome;
     }
 
+
+    
 }

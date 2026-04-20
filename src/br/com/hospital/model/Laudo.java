@@ -1,16 +1,16 @@
 package br.com.hospital.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Laudo {
     private Integer id;
     private Resultado resultado;
     private String descricao;
     private Object anexo;
-    private LocalDate dataResultado;
+    private LocalDateTime dataResultado;
     
     // o anexo não é obrigatório, por isso não está aqui
-    public Laudo(Integer id, Resultado resultado, String descricao, LocalDate dataResultado) {
+    public Laudo(Integer id, Resultado resultado, String descricao, LocalDateTime dataResultado) {
         this.id= id;
         this.resultado = resultado;
         this.descricao = descricao;
@@ -55,11 +55,11 @@ public class Laudo {
         this.anexo = anexo;
     }
 
-    public LocalDate getDataResultado() {
+    public LocalDateTime getDataResultado() {
         return dataResultado;
     }
 
-    public void setDataResultado(LocalDate dataResultado) {
+    public void setDataResultado(LocalDateTime dataResultado) {
         this.dataResultado = dataResultado;
     }
 

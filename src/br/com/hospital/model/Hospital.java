@@ -8,9 +8,15 @@ public class Hospital {
     protected String cnpj;
     protected List<Ala> alas;
     protected List<PlanoSaude> planosSaude;
+<<<<<<< HEAD
 
     public Hospital(Integer id, String cnpj) {
         this.id = id;
+=======
+    
+    public Hospital(Integer id, String cnpj) {
+        this.id= id;
+>>>>>>> 7df133600304c8c7ecd772fe876c23abe73345bd
         this.cnpj = cnpj;
         this.alas = new ArrayList<>();
         this.planosSaude = new ArrayList<>();
@@ -28,12 +34,21 @@ public class Hospital {
     public void setId(Integer id) {
         this.id = id;
     }
+<<<<<<< HEAD
 
     public String getCpnj() {
         return cnpj;
     }
 
     public void setCpnj(String cnpj) {
+=======
+    
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+>>>>>>> 7df133600304c8c7ecd772fe876c23abe73345bd
         this.cnpj = cnpj;
     }
 

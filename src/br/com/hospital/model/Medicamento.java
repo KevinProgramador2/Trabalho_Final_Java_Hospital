@@ -2,14 +2,14 @@ package br.com.hospital.model;
 
 import java.time.LocalDate;
 
-public class Medicamentos {
+public class Medicamento {
     private Integer id;
     private String nome;
     private LocalDate data;
     private String dosagem;
     private Integer quantidade;
     
-    public Medicamentos(Integer id, String nome, LocalDate data, String dosagem, Integer quantidade) {
+    public Medicamento(Integer id, String nome, LocalDate data, String dosagem, Integer quantidade) {
         this.id= id;
         this.nome = nome;
         this.data = data;
@@ -62,5 +62,5 @@ public class Medicamentos {
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
-
+    
 }

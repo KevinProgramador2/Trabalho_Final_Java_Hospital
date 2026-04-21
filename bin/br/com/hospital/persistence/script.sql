@@ -87,7 +87,7 @@ CREATE TABLE prescricao (
   medicamento_id INT NOT NULL,
   CONSTRAINT fk_prescricao_atendimento FOREIGN KEY (atendimento_id) REFERENCES atendimento(id_atendimento)
     ON DELETE RESTRICT,
-  CONSTRAINT fk_prescricao_medicamento FOREIGN KEY (medicamento_id) REFERENCES medicamento(id_medico)
+  CONSTRAINT fk_prescricao_medicamento FOREIGN KEY (medicamento_id) REFERENCES medicamento(id_medicamento)
     ON DELETE RESTRICT
 );
 
@@ -102,10 +102,7 @@ CREATE TABLE exame (
   tipo VARCHAR(50) NOT NULL,
   custo DECIMAL(10,2) NOT NULL,
   descricao TEXT,          
-  resultado VARCHAR(30),     
   data_solicitacao TIMESTAMP NOT NULL,
-  data_resultado TIMESTAMP, 
-  arquivo_laudo VARCHAR(255),
   paciente_id INT NOT NULL,
   medico_id INT NOT NULL,
   laboratorio_id INT NOT NULL,
@@ -114,6 +111,16 @@ CREATE TABLE exame (
   CONSTRAINT fk_exame_medico FOREIGN KEY (medico_id) REFERENCES medico(id_medico)
     ON DELETE RESTRICT,
   CONSTRAINT fk_exame_laboratorio FOREIGN KEY (laboratorio_id) REFERENCES laboratorio(id_laboratorio)
+    ON DELETE RESTRICT
+);
+
+CREATE TABLE laudo (
+  id_laudo SERIAL PRIMARY KEY,
+  resultado VARCHAR(30) NOT NULL,
+  descricao TEXT,
+  data_resultado TIMESTAMP NOT NULL,
+  exame_id INT NOT NULL UNIQUE,
+  CONSTRAINT fk_laudo_exame FOREIGN KEY (exame_id) REFERENCES exame(id_exame)
     ON DELETE RESTRICT
 );
 

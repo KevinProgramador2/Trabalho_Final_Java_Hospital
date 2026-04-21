@@ -6,21 +6,21 @@ public class Laudo {
     private Integer id;
     private Resultado resultado;
     private String descricao;
-    private Object anexo;
     private LocalDateTime dataResultado;
+    private Exame exame;
     
-    // o anexo não é obrigatório, por isso não está aqui
-    public Laudo(Integer id, Resultado resultado, String descricao, LocalDateTime dataResultado) {
-        this.id= id;
+    public Laudo(Integer id, Resultado resultado, String descricao, LocalDateTime dataResultado, Exame exame) {
+        this.id = id;
         this.resultado = resultado;
         this.descricao = descricao;
         this.dataResultado = dataResultado;
+        this.exame = exame;
     }
 
     @Override
     public String toString() {
-        return "Laudo [id=" + id + ", resultado=" + resultado + ", descricao=" + descricao + ", anexo=" + anexo + ", dataResultado="
-                + dataResultado + "]";
+        return "Laudo [id=" + id + ", resultado=" + resultado + ", descricao=" + descricao + ", dataResultado="
+                + dataResultado + ", exame=" + exame + "]";
     }
 
     public Integer getId() {
@@ -47,14 +47,6 @@ public class Laudo {
         this.descricao = descricao;
     }
 
-    public Object getAnexo() {
-        return anexo;
-    }
-
-    public void anexarArquivo(Object anexo) {
-        this.anexo = anexo;
-    }
-
     public LocalDateTime getDataResultado() {
         return dataResultado;
     }
@@ -63,4 +55,12 @@ public class Laudo {
         this.dataResultado = dataResultado;
     }
 
+    public Exame getExame() {
+        return exame;
+    }
+
+    public void setExame(Exame exame) {
+        this.exame = exame;
+    }
+    
 }

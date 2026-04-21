@@ -7,66 +7,38 @@ import java.time.LocalDateTime;
 // e porque somente Laudo depende de Exame, e não vice-versa.
 public class Exame {
     private Integer id;
-    private Paciente paciente;
-    private Laboratorio laboratorio;
-    private LocalDateTime dataSolicitacao;
-    private Medico solicitante;
-    private Medico medicoResponsavel;
     private TipoExame tipo;
     private BigDecimal custo;
-    private Laudo laudo;
+    private String descricao;
+    private LocalDateTime dataSolicitacao;
+    private Paciente paciente;
+    private Laboratorio laboratorio;
+    private Medico responsavel;
     
-    
-
-    public Exame(Integer id, Paciente paciente, Laboratorio laboratorio, LocalDateTime dataSolicitacao,
-            Medico solicitante, Medico medicoResponsavel, TipoExame tipo, BigDecimal custo, Laudo laudo) {
+    public Exame(Integer id, TipoExame tipo, BigDecimal custo, LocalDateTime dataSolicitacao, Paciente paciente,
+            Laboratorio laboratorio, Medico responsavel) {
         this.id = id;
-        this.paciente = paciente;
-        this.laboratorio = laboratorio;
-        this.dataSolicitacao = dataSolicitacao;
-        this.solicitante = solicitante;
-        this.medicoResponsavel = medicoResponsavel;
         this.tipo = tipo;
         this.custo = custo;
-        this.laudo = laudo;
+        this.dataSolicitacao = dataSolicitacao;
+        this.paciente = paciente;
+        this.laboratorio = laboratorio;
+        this.responsavel = responsavel;
     }
 
     @Override
     public String toString() {
-        return "Exame [id=" + id + ", paciente=" + paciente + ", laboratorio=" + laboratorio + ", dataSolicitacao=" + dataSolicitacao
-                + ", solicitante=" + solicitante + ", tipo=" + tipo + ", custo=" + custo + "]";
+        return "Exame [id=" + id + ", tipo=" + tipo + ", custo=" + custo + ", descricao=" + descricao
+                + ", dataSolicitacao=" + dataSolicitacao + ", paciente=" + paciente + ", laboratorio=" + laboratorio
+                + ", responsavel=" + responsavel + "]";
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
-
-    public Laboratorio getLaboratorio() {
-        return laboratorio;
-    }
-
-    public void setLaboratorio(Laboratorio laboratorio) {
-        this.laboratorio = laboratorio;
-    }
-
-    public LocalDateTime getDataSolicitacao() {
-        return dataSolicitacao;
-    }
-
-    public void setDataSolicitacao(LocalDateTime dataSolicitacao) {
-        this.dataSolicitacao = dataSolicitacao;
-    }
-
-    public Medico getSolicitante() {
-        return solicitante;
-    }
-
-    public void setSolicitante(Medico solicitante) {
-        this.solicitante = solicitante;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public TipoExame getTipo() {
@@ -85,20 +57,44 @@ public class Exame {
         this.custo = custo;
     }
 
-    public Medico getMedicoResponsavel() {
-        return medicoResponsavel;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setMedicoResponsavel(Medico medicoResponsavel) {
-        this.medicoResponsavel = medicoResponsavel;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public Laudo getLaudo() {
-        return laudo;
+    public LocalDateTime getDataSolicitacao() {
+        return dataSolicitacao;
     }
 
-    public void adicionarLaudo(Laudo laudo) {
-        this.laudo = laudo;
+    public void setDataSolicitacao(LocalDateTime dataSolicitacao) {
+        this.dataSolicitacao = dataSolicitacao;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public Laboratorio getLaboratorio() {
+        return laboratorio;
+    }
+
+    public void setLaboratorio(Laboratorio laboratorio) {
+        this.laboratorio = laboratorio;
+    }
+
+    public Medico getResponsavel() {
+        return responsavel;
+    }
+
+    public void setResponsavel(Medico responsavel) {
+        this.responsavel = responsavel;
     }
 
 }

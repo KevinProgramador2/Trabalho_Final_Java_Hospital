@@ -1,54 +1,41 @@
-CREATE DATABASE trabalho_poo;
-
-CREATE TABLE pessoa (
-  id INT PRIMARY KEY,
-  nome VARCHAR(100) NOT NULL,
-  cpf VARCHAR(14) UNIQUE NOT NULL
-);
+CREATE DATABASE hospital;
 
 CREATE TABLE hospital (
-  id INT PRIMARY KEY,
+  id_hospital SERIAL PRIMARY KEY,
   nome VARCHAR(100) NOT NULL,
   cnpj VARCHAR(18) UNIQUE NOT NULL
 );
 
 CREATE TABLE plano (
-  id INT PRIMARY KEY,
+  id_plano SERIAL PRIMARY KEY,
   nome VARCHAR(100) UNIQUE NOT NULL,
   telefone VARCHAR(20) NOT NULL,
   cobertura VARCHAR(50) NOT NULL,
   data_credenciamento DATE NOT NULL
 );
 
-CREATE TABLE hospital_plano (
-  hospital_id INT NOT NULL,
-  plano_id INT NOT NULL,
-  PRIMARY KEY (hospital_id, plano_id),
-  FOREIGN KEY (hospital_id) REFERENCES hospital(id),
-  FOREIGN KEY (plano_id) REFERENCES plano(id)
-);
-
 CREATE TABLE paciente (
-  id INT PRIMARY KEY,
-  pessoa_id INT UNIQUE NOT NULL,
-  FOREIGN KEY (pessoa_id) REFERENCES pessoa(id)
+  id_paciente SERIAL PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  cpf VARCHAR(14) UNIQUE NOT NULL
 );
 
 CREATE TABLE medico (
-  id INT PRIMARY KEY,
+  id_medico SERIAL PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  cpf VARCHAR(14) UNIQUE NOT NULL,
   crm VARCHAR(20) UNIQUE NOT NULL,
-  especialidade VARCHAR(100) NOT NULL,
-  pessoa_id INT UNIQUE NOT NULL,
-  FOREIGN KEY (pessoa_id) REFERENCES pessoa(id)
+  especialidade VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE enfermeira (
-  id INT PRIMARY KEY,
+  id_enfermeira SERIAL PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  cpf VARCHAR(14) UNIQUE NOT NULL,
   cre VARCHAR(20) UNIQUE NOT NULL,
   turno VARCHAR(20) NOT NULL,
   pessoa_id INT UNIQUE NOT NULL,
   chefe_id INT,             
-  FOREIGN KEY (pessoa_id) REFERENCES pessoa(id),
   FOREIGN KEY (chefe_id) REFERENCES enfermeira(id)
 );
 

@@ -18,7 +18,8 @@ public class Ala {
 
     @Override
     public String toString() {
-        return "Ala [id=" + id + ", tipo=" + tipo + ", responsavel=" + responsavel +", leitosDisponiveis=" + getLeitosDisponiveis() + "]";
+        return "Ala [id=" + id + ", tipo=" + tipo + ", responsavel=" + responsavel + ", leitosDisponiveis="
+                + getLeitosDisponiveis() + "]";
     }
 
     public Integer getId() {
@@ -53,7 +54,6 @@ public class Ala {
         this.leitos = leitos;
     }
 
-
     public void adicionarLeito(Leito leito) {
         this.leitos.add(leito);
     }
@@ -64,11 +64,8 @@ public class Ala {
             if (leito.getStatus() == StatusLeito.LIVRE) {
                 count++;
             }
+        }
+        return count;
     }
-    return count;
+
 }
-
-    
-    }
-
-

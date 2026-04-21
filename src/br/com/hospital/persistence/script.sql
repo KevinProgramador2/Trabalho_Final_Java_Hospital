@@ -87,7 +87,7 @@ CREATE TABLE prescricao (
   medicamento_id INT NOT NULL,
   CONSTRAINT fk_prescricao_atendimento FOREIGN KEY (atendimento_id) REFERENCES atendimento(id_atendimento)
     ON DELETE RESTRICT,
-  CONSTRAINT fk_prescricao_medicamento FOREIGN KEY (medicamento_id) REFERENCES medicamento(id_medico)
+  CONSTRAINT fk_prescricao_medicamento FOREIGN KEY (medicamento_id) REFERENCES medicamento(id_medicamento)
     ON DELETE RESTRICT
 );
 

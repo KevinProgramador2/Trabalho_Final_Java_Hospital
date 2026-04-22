@@ -16,7 +16,7 @@ public class Fatura {
     private FormaPagamentoEnum formaPagamento;
     private Cliente pagador;
     private ServicoEnum servico;
-    
+
     public Fatura(Integer id, String numero, BigDecimal valor, LocalDate dataEmissao, LocalDate dataVencimento,
             StatusCobrancaEnum statusCobranca, FormaPagamentoEnum formaPagamento, Cliente pagador,
             ServicoEnum servico) {
@@ -39,7 +39,7 @@ public class Fatura {
     }
 
     public void pagar(FormaPagamentoEnum formaPagamento) {
-        statusCobranca= StatusCobrancaEnum.PAGO;
+        statusCobranca = StatusCobrancaEnum.PAGO;
     }
 
     public Integer getId() {
@@ -113,5 +113,5 @@ public class Fatura {
     public void setServico(ServicoEnum servico) {
         this.servico = servico;
     }
-    
+
 }

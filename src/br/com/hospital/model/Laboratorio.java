@@ -7,8 +7,10 @@ public class Laboratorio {
     private String nome;
     private TipoLaboratorioEnum tipo;
 
+
     public Laboratorio(Integer id, String nome, TipoLaboratorioEnum tipo) {
         this.id= id;
+ 
         this.nome = nome;
         this.tipo = tipo;
     }
@@ -41,5 +43,5 @@ public class Laboratorio {
     public void setTipo(TipoLaboratorioEnum tipo) {
         this.tipo = tipo;
     }
-    
+
 }

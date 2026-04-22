@@ -11,18 +11,19 @@ public class Ala {
     private TipoAlaEnum tipo;
     private Hospital hospital;
     private Enfermeiro responsavel;
-    private List<Leito> leitos= new ArrayList<>();
+    private List<Leito> leitos = new ArrayList<>();
 
     public Ala(Integer id, TipoAlaEnum tipo, Hospital hospital, Enfermeiro responsavel) {
         this.id = id;
         this.tipo = tipo;
-        this.hospital= hospital;
+        this.hospital = hospital;
         this.responsavel = responsavel;
     }
 
     @Override
     public String toString() {
-        return "Ala [id=" + id + ", tipo=" + tipo + ", responsavel=" + responsavel +", leitosDisponiveis=" + getLeitosDisponiveis() + "]";
+        return "Ala [id=" + id + ", tipo=" + tipo + ", responsavel=" + responsavel + ", leitosDisponiveis="
+                + getLeitosDisponiveis() + "]";
     }
 
     public Integer getId() {
@@ -57,7 +58,6 @@ public class Ala {
         this.leitos = leitos;
     }
 
-
     public void addLeito(Leito leito) {
         this.leitos.add(leito);
     }
@@ -72,5 +72,5 @@ public class Ala {
 
         return count;
     }
-    
+
 }

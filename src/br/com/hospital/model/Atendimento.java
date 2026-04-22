@@ -5,34 +5,36 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.hospital.model.enums.StatusAtendimentoEnum;
+import br.com.hospital.model.enums.TipoAtendimentoEnum;
+
 public class Atendimento {
     private Integer id;
+    private LocalDateTime dataAtendimento;
+    private TipoAtendimentoEnum tipo;
+    private StatusAtendimentoEnum status;
+    private String observacao;
     private Paciente paciente;
     private Medico medico;
-    private LocalDateTime dataAtendimento;
-    private TipoAtendimento tipo;
-    private StatusAtendimento status;
-    private String observacao;
-    private List<Medicamento> medicamentos;
+    private List<Prescricao> medicamentos= new ArrayList<>();
     
-    public Atendimento(Integer id, Paciente paciente, Medico medico, LocalDateTime dataAtendimento, TipoAtendimento tipo,
-            StatusAtendimento status, String observacao) {
-        this.id= id;
-        this.paciente = paciente;
-        this.medico = medico;
+    public Atendimento(Integer id, LocalDateTime dataAtendimento, TipoAtendimentoEnum tipo,
+            StatusAtendimentoEnum status, Paciente paciente, Medico medico) {
+        this.id = id;
         this.dataAtendimento = dataAtendimento;
         this.tipo = tipo;
         this.status = status;
-        this.observacao = observacao;
-        this.medicamentos= new ArrayList<>();
+        this.paciente = paciente;
+        this.medico = medico;
     }
 
     @Override
     public String toString() {
-        return "Atendimento [id=" + id + ", paciente=" + paciente.getNome() + ", medico=" + medico.getNome() + ", dataAtendimento=" + dataAtendimento
-        + ", tipo=" + tipo + ", status=" + status + ", observacao=" + observacao + "]";
+        return "Atendimento [id=" + id + ", dataAtendimento=" + dataAtendimento + ", tipo=" + tipo + ", status="
+                + status + ", observacao=" + observacao + ", paciente=" + paciente + ", medico=" + medico
+                + ", medicamentos=" + medicamentos + "]";
     }
-    
+
     public Integer getId() {
         return id;
     }
@@ -65,19 +67,19 @@ public class Atendimento {
         this.dataAtendimento = dataAtendimento;
     }
 
-    public TipoAtendimento getTipo() {
+    public TipoAtendimentoEnum getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoAtendimento tipo) {
+    public void setTipo(TipoAtendimentoEnum tipo) {
         this.tipo = tipo;
     }
 
-    public StatusAtendimento getStatus() {
+    public StatusAtendimentoEnum getStatus() {
         return status;
     }
 
-    public void setStatus(StatusAtendimento status) {
+    public void setStatus(StatusAtendimentoEnum status) {
         this.status = status;
     }
 
@@ -89,17 +91,16 @@ public class Atendimento {
         this.observacao = observacao;
     }
 
-    public List<Medicamento> getMedicamentos() {
+    public List<Prescricao> getMedicamentos() {
         return medicamentos;
     }
 
-    public void setMedicamentos(List<Medicamento> medicamentos) {
+    public void setMedicamentos(List<Prescricao> medicamentos) {
         this.medicamentos = medicamentos;
     }
 
-    public void prescreverMedicamento(Medicamento medicamento) {
+    public void prescreverMedicamento(Prescricao medicamento) {
         this.medicamentos.add(medicamento);
     }
-
 
 }

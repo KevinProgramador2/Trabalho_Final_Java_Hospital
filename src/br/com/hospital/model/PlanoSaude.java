@@ -1,34 +1,34 @@
 package br.com.hospital.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-public class PlanoSaude implements Pagador{
+public class PlanoSaude implements Cliente{
     private Integer id;
     private String nome;
     private String telefone;
     private CoberturaPlano cobertura;
-    private LocalDate dataCredenciamento;
+    private List<Credenciamento> credenciamentos = new ArrayList<>();
     
-    public PlanoSaude(Integer id, String nome, String telefone, CoberturaPlano cobertura, LocalDate dataCredenciamento) {
-        this.id= id;
+    public PlanoSaude(Integer id, String nome, String telefone, CoberturaPlano cobertura) {
+        this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.cobertura = cobertura;
-        this.dataCredenciamento = dataCredenciamento;
     }
 
     @Override
     public String toString() {
-        return "PlanoSaude [id=" + id + ", nome=" + nome + ", telefone=" + telefone + ", cobertura=" + cobertura
-                + ", dataCredenciamento=" + dataCredenciamento + "]";
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+        return "PlanoSaude [id=" + id + ", nome=" + nome + ", telefone=" + telefone + ", cobertura=" + cobertura + "]";
     }
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setNome(String nome) {
@@ -51,12 +51,12 @@ public class PlanoSaude implements Pagador{
         this.cobertura = cobertura;
     }
 
-    public LocalDate getDataCredenciamento() {
-        return dataCredenciamento;
+    public List<Credenciamento> getCredenciamentos() {
+        return credenciamentos;
     }
 
-    public void setDataCredenciamento(LocalDate dataCredenciamento) {
-        this.dataCredenciamento = dataCredenciamento;
+    public void setCredenciamentos(List<Credenciamento> credenciamentos) {
+        this.credenciamentos = credenciamentos;
     }
     
     @Override
@@ -69,6 +69,8 @@ public class PlanoSaude implements Pagador{
         return nome;
     }
 
+    public void addCredenciamento(Credenciamento credenciamento) {
+        credenciamentos.add(credenciamento);
+    }
 
-    
 }

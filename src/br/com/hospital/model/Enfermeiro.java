@@ -2,16 +2,18 @@ package br.com.hospital.model;
 
 import java.time.LocalDate;
 
+import br.com.hospital.model.enums.TurnoEnum;
+
 public class Enfermeiro extends Pessoa {
     private Integer id;
     private String cre;
-    private Turno turno;
+    private TurnoEnum turno;
     private Ala ala;
     private Enfermeiro chefe= null;
 
     // construtor para enfermeiras subordinadas.
     public Enfermeiro(Integer id, String nome, String cpf, String telefone, String endereco, LocalDate dataNascimento, String cre,
-            Turno turno, Ala ala, Enfermeiro chefe) {
+            TurnoEnum turno, Ala ala, Enfermeiro chefe) {
         super(nome, cpf, telefone, endereco, dataNascimento);
         this.id= id;
         this.cre = cre;
@@ -22,7 +24,7 @@ public class Enfermeiro extends Pessoa {
 
     // construtor usado para enfermeiras-chefe.
     public Enfermeiro(Integer id, String nome, String cpf, String telefone, String endereco, LocalDate dataNascimento, String cre,
-            Turno turno, Ala ala) {
+            TurnoEnum turno, Ala ala) {
         super(nome, cpf, telefone, endereco, dataNascimento);
         this.id= id;
         this.cre = cre;
@@ -56,11 +58,11 @@ public class Enfermeiro extends Pessoa {
         this.cre = cre;
     }
 
-    public Turno getTurno() {
+    public TurnoEnum getTurno() {
         return turno;
     }
 
-    public void setTurno(Turno turno) {
+    public void setTurno(TurnoEnum turno) {
         this.turno = turno;
     }
 

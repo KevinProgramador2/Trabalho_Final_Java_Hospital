@@ -3,17 +3,21 @@ package br.com.hospital.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.hospital.model.enums.StatusLeitoEnum;
+import br.com.hospital.model.enums.TipoAlaEnum;
+
 public class Ala {
     private Integer id;
-    private TipoAla tipo;
+    private TipoAlaEnum tipo;
+    private Hospital hospital;
     private Enfermeiro responsavel;
-    private List<Leito> leitos;
+    private List<Leito> leitos= new ArrayList<>();
 
-    public Ala(Integer id, TipoAla tipo, Enfermeiro responsavel) {
+    public Ala(Integer id, TipoAlaEnum tipo, Hospital hospital, Enfermeiro responsavel) {
         this.id = id;
         this.tipo = tipo;
+        this.hospital= hospital;
         this.responsavel = responsavel;
-        this.leitos = new ArrayList<>();
     }
 
     @Override
@@ -30,11 +34,11 @@ public class Ala {
         this.id = id;
     }
 
-    public TipoAla getTipo() {
+    public TipoAlaEnum getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoAla tipo) {
+    public void setTipo(TipoAlaEnum tipo) {
         this.tipo = tipo;
     }
 
@@ -54,18 +58,31 @@ public class Ala {
         this.leitos = leitos;
     }
 
+<<<<<<< HEAD
     public void adicionarLeito(Leito leito) {
+=======
+
+    public void addLeito(Leito leito) {
+>>>>>>> f61cb4486e6f5c63747563fdc9a53fb73ee94e89
         this.leitos.add(leito);
     }
 
     public Integer getLeitosDisponiveis() {
         int count = 0;
         for (Leito leito : leitos) {
-            if (leito.getStatus() == StatusLeito.LIVRE) {
+            if (leito.getStatus() == StatusLeitoEnum.LIVRE) {
                 count++;
             }
         }
+<<<<<<< HEAD
         return count;
     }
 
 }
+=======
+
+        return count;
+    }
+    
+}
+>>>>>>> f61cb4486e6f5c63747563fdc9a53fb73ee94e89

@@ -2,7 +2,7 @@ package br.com.hospital.model;
 
 import java.time.LocalDate;
 
-public class Paciente extends Pessoa implements Pagador{
+public class Paciente extends Pessoa implements Cliente{
     private Integer id;
     
     public Paciente(String nome, String cpf, String telefone, String endereco, LocalDate dataNascimento, Integer id) {
@@ -10,18 +10,19 @@ public class Paciente extends Pessoa implements Pagador{
         this.id= id;
     }
 
-
     @Override
     public Integer getIdentificador() {
         return id;
     }
 
-
     public Integer getId() {
         return id;
     }
 
-
+    @Override
+    public String getNome() {
+        return super.getNome();
+    }
 
     public void setId(Integer id) {
         this.id = id;

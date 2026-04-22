@@ -235,6 +235,12 @@ INSERT INTO hospital.internacao (id_internacao, data_entrada, data_saida, pacien
 (5, '2026-04-21 11:00:00', NULL, 5, 9),
 (6, '2026-04-15 13:00:00', '2026-04-20 09:00:00', 6, 12);
 
+INSERT INTO hospital.internacao (id_internacao, data_entrada, data_saida, paciente_id, leito_id) VALUES 
+(7, '2026-04-21 16:00:00', NULL, 7, 2),
+(8, '2026-04-22 08:30:00', NULL, 8, 4),
+(9, '2026-04-22 10:00:00', NULL, 9, 5),
+(10, '2026-04-10 14:00:00', '2026-04-12 18:00:00', 10, 10);
+
 --inserindo medicamento
 
 INSERT INTO hospital.medicamento (nome) VALUES 

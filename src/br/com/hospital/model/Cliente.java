@@ -4,4 +4,5 @@ public interface Cliente {
     Integer getIdentificador();
 
     String getNome();
+
 }

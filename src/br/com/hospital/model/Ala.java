@@ -11,12 +11,12 @@ public class Ala {
     private TipoAlaEnum tipo;
     private Hospital hospital;
     private Enfermeiro responsavel;
-    private List<Leito> leitos= new ArrayList<>();
+    private List<Leito> leitos = new ArrayList<>();
 
     public Ala(Integer id, TipoAlaEnum tipo, Hospital hospital, Enfermeiro responsavel) {
         this.id = id;
         this.tipo = tipo;
-        this.hospital= hospital;
+        this.hospital = hospital;
         this.responsavel = responsavel;
     }
 
@@ -58,12 +58,7 @@ public class Ala {
         this.leitos = leitos;
     }
 
-<<<<<<< HEAD
-    public void adicionarLeito(Leito leito) {
-=======
-
     public void addLeito(Leito leito) {
->>>>>>> f61cb4486e6f5c63747563fdc9a53fb73ee94e89
         this.leitos.add(leito);
     }
 
@@ -74,15 +69,8 @@ public class Ala {
                 count++;
             }
         }
-<<<<<<< HEAD
+
         return count;
     }
 
 }
-=======
-
-        return count;
-    }
-    
-}
->>>>>>> f61cb4486e6f5c63747563fdc9a53fb73ee94e89

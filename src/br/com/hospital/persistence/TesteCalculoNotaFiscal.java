@@ -17,7 +17,7 @@ public class TesteCalculoNotaFiscal {
 
         public static void main(String[] args) {
                 Cliente c = new Paciente("Roberto", "1234553411", "22445533", "Rua Alamida 23", LocalDate.now(), 1);
-                BigDecimal valor = new BigDecimal("1500.75");
+                BigDecimal valor = new BigDecimal("5000.00");
                 Fatura f = new Fatura(1, "22322422", valor, LocalDate.now(), LocalDate.now(),
                                 StatusCobrancaEnum.EM_ANALISE,
                                 FormaPagamentoEnum.PIX, c, ServicoEnum.INTERNCACAO);
@@ -26,14 +26,15 @@ public class TesteCalculoNotaFiscal {
                                 54.0,
                                 f);
 
-                f.equals(nf);
                 nf.calcularImpostos();
 
                 System.out.println("Fatura valor: " + f.getValor());
                 System.out.println("Nota Fiscal gerada: " + nf);
                 System.out.println(
-                                "PIS: " + nf.getValorPis() + "\n | COFINS: " + nf.getValorCofins() + "\n | ISS: "
-                                                + nf.getValorIss()
-                                                + "\nIRPJ" + nf.getValorIrpj() + "\nCSLL" + nf.getvalorCsll());
+                                "PIS: " + valor.multiply(BigDecimal.valueOf(nf.getValorPis())) + "\n | COFINS: "
+                                                + valor.multiply(BigDecimal.valueOf(nf.getValorCofins())) + "\n | ISS: "
+                                                + valor.multiply((BigDecimal.valueOf(nf.getValorIss())))
+                                                + "\nIRPJ" + valor.multiply(BigDecimal.valueOf(nf.getValorIrpj()))
+                                                + "\nCSLL" + valor.multiply(BigDecimal.valueOf(nf.getvalorCsll())));
         }
 }

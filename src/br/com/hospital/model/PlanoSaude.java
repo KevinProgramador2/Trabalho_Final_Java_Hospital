@@ -4,13 +4,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlanoSaude implements Cliente{
+public class PlanoSaude implements Cliente {
     private Integer id;
     private String nome;
     private String telefone;
     private CoberturaPlano cobertura;
     private List<Credenciamento> credenciamentos = new ArrayList<>();
-    
+
     public PlanoSaude(Integer id, String nome, String telefone, CoberturaPlano cobertura) {
         this.id = id;
         this.nome = nome;
@@ -58,7 +58,7 @@ public class PlanoSaude implements Cliente{
     public void setCredenciamentos(List<Credenciamento> credenciamentos) {
         this.credenciamentos = credenciamentos;
     }
-    
+
     @Override
     public Integer getIdentificador() {
         return id;

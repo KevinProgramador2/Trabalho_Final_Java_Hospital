@@ -62,8 +62,6 @@ CREATE TABLE enfermeiro (
   chefe_id INT,
 
   CONSTRAINT fk_enfermeiro_pessoa FOREIGN KEY (pessoa_id) REFERENCES pessoa(id_pessoa)
-    ON DELETE RESTRICT,
-  CONSTRAINT fk_enfermeiro_ala FOREIGN KEY (ala_id) REFERENCES ala(id_ala)
     ON DELETE RESTRICT,     
   CONSTRAINT fk_enfermeiro_chefe FOREIGN KEY (chefe_id) REFERENCES enfermeiro(id_enfermeiro)
     ON DELETE RESTRICT
@@ -77,10 +75,13 @@ CREATE TABLE ala (
   responsavel_id INT UNIQUE NOT NULL,
 
   CONSTRAINT fk_ala_hospital FOREIGN KEY (hospital_id) REFERENCES hospital(id_hospital)
-    ON DELETE RESTRICT,
-  CONSTRAINT fk_ala_responsavel FOREIGN KEY (responsavel_id) REFERENCES enfermeiro(id_enfermeiro)
     ON DELETE RESTRICT
 );
+
+ALTER TABLE enfermeiro ADD CONSTRAINT fk_enfermeiro_ala FOREIGN KEY (ala_id) REFERENCES ala(id_ala)
+    ON DELETE RESTRICT;
+ALTER TABLE ala ADD CONSTRAINT fk_ala_responsavel FOREIGN KEY (responsavel_id) REFERENCES enfermeiro(id_enfermeiro)
+    ON DELETE RESTRICT;
 
 CREATE TABLE leito (
   id_leito SERIAL PRIMARY KEY,
@@ -197,9 +198,9 @@ CREATE TABLE fatura (
   CONSTRAINT fk_fatura_planoSaude FOREIGN KEY (planoSaude_id) REFERENCES planoSaude(id_planoSaude)
     ON DELETE RESTRICT,
   CONSTRAINT chk_fatura_cliente CHECK (
-    (paciente_id IS NOT NULL AND plano_id IS NULL)
+    (paciente_id IS NOT NULL AND planoSaude_id IS NULL)
     OR
-    (paciente_id IS NULL AND plano_id IS NOT NULL)
+    (paciente_id IS NULL AND planoSaude_id IS NOT NULL)
   )
 );
 

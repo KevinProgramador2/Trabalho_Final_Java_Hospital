@@ -4,17 +4,17 @@ import java.time.LocalDate;
 
 public class Internacao {
     private Integer id;
-    private Paciente paciente;
-    private Leito leito;
     private LocalDate dataEntrada;
     private LocalDate dataSaida;
+    private Paciente paciente;
+    private Leito leito;
     
-    public Internacao(Integer id, Paciente paciente, Leito leito, LocalDate dataEntrada) {
-        this.id= id;
-        this.paciente = paciente;
-        this.leito = leito;
-        this.leito.ocupar();
+    public Internacao(Integer id, LocalDate dataEntrada, Paciente paciente, Leito leito) {
+        this.id = id;
         this.dataEntrada = dataEntrada;
+        this.paciente = paciente;
+        leito.ocupar();
+        this.leito = leito;
     }
 
     @Override

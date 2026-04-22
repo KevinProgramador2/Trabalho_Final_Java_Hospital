@@ -3,27 +3,29 @@ package br.com.hospital.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import br.com.hospital.model.enums.TipoExameEnum;
+
 // exame foi separado de laudo para fins de facilitar
 // e porque somente Laudo depende de Exame, e não vice-versa.
 public class Exame {
     private Integer id;
-    private TipoExame tipo;
+    private TipoExameEnum tipo;
     private BigDecimal custo;
     private String descricao;
     private LocalDateTime dataSolicitacao;
     private Paciente paciente;
-    private Laboratorio laboratorio;
     private Medico responsavel;
+    private Laboratorio laboratorio;
     
-    public Exame(Integer id, TipoExame tipo, BigDecimal custo, LocalDateTime dataSolicitacao, Paciente paciente,
-            Laboratorio laboratorio, Medico responsavel) {
+    public Exame(Integer id, TipoExameEnum tipo, BigDecimal custo, LocalDateTime dataSolicitacao, Paciente paciente,
+            Medico responsavel, Laboratorio laboratorio) {
         this.id = id;
         this.tipo = tipo;
         this.custo = custo;
         this.dataSolicitacao = dataSolicitacao;
         this.paciente = paciente;
-        this.laboratorio = laboratorio;
         this.responsavel = responsavel;
+        this.laboratorio = laboratorio;
     }
 
     @Override
@@ -41,11 +43,11 @@ public class Exame {
         this.id = id;
     }
 
-    public TipoExame getTipo() {
+    public TipoExameEnum getTipo() {
         return tipo;
     }
 
-    public void setTipo(TipoExame tipo) {
+    public void setTipo(TipoExameEnum tipo) {
         this.tipo = tipo;
     }
 

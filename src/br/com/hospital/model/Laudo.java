@@ -2,14 +2,16 @@ package br.com.hospital.model;
 
 import java.time.LocalDateTime;
 
+import br.com.hospital.model.enums.ResultadoEnum;
+
 public class Laudo {
     private Integer id;
-    private Resultado resultado;
+    private ResultadoEnum resultado;
     private String descricao;
     private LocalDateTime dataResultado;
     private Exame exame;
     
-    public Laudo(Integer id, Resultado resultado, String descricao, LocalDateTime dataResultado, Exame exame) {
+    public Laudo(Integer id, ResultadoEnum resultado, String descricao, LocalDateTime dataResultado, Exame exame) {
         this.id = id;
         this.resultado = resultado;
         this.descricao = descricao;
@@ -31,11 +33,11 @@ public class Laudo {
         this.id = id;
     }
 
-    public Resultado getResultado() {
+    public ResultadoEnum getResultado() {
         return resultado;
     }
 
-    public void setResultado(Resultado resultado) {
+    public void setResultado(ResultadoEnum resultado) {
         this.resultado = resultado;
     }
 

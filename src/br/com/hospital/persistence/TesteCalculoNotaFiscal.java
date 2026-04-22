@@ -13,24 +13,27 @@ import br.com.hospital.model.enums.ServicoEnum;
 import br.com.hospital.model.enums.StatusCobrancaEnum;
 
 public class TesteCalculoNotaFiscal {
-    Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        Cliente c = new Paciente("Roberto", "1234553411", "22445533", "Rua Alamida 23", LocalDate.now(), 1);
-        BigDecimal valor = new BigDecimal("1500.75");
-        Fatura f = new Fatura(1, "22322422", valor, LocalDate.now(), LocalDate.now(), StatusCobrancaEnum.EM_ANALISE,
-                FormaPagamentoEnum.PIX, c, ServicoEnum.INTERNCACAO);
+        public static void main(String[] args) {
+                Cliente c = new Paciente("Roberto", "1234553411", "22445533", "Rua Alamida 23", LocalDate.now(), 1);
+                BigDecimal valor = new BigDecimal("1500.75");
+                Fatura f = new Fatura(1, "22322422", valor, LocalDate.now(), LocalDate.now(),
+                                StatusCobrancaEnum.EM_ANALISE,
+                                FormaPagamentoEnum.PIX, c, ServicoEnum.INTERNCACAO);
 
-        NotaFiscal nf = new NotaFiscal("Clínica Saúde XPTO Ltda.", "João Da Silva", 32.50, 150.0, 54.0, 60.0, 54.0,
-                f);
+                NotaFiscal nf = new NotaFiscal("Clínica Saúde XPTO Ltda.", "João Da Silva", 32.50, 150.0, 54.0, 60.0,
+                                54.0,
+                                f);
 
-        f.equals(nf);
-        nf.calcularImpostos();
+                f.equals(nf);
+                nf.calcularImpostos();
 
-        System.out.println("Fatura valor: " + f.getValor());
-        System.out.println("Nota Fiscal gerada: " + nf);
-        System.out.println(
-                "PIS: " + nf.getValorPis() + "\n | COFINS: " + nf.getValorCofins() + "\n | ISS: " + nf.getValorIss()
-                        + "\nIRPJ" + nf.getValorIrpj() + "\nCSLL" + nf.getvalorCsll());
-    }
+                System.out.println("Fatura valor: " + f.getValor());
+                System.out.println("Nota Fiscal gerada: " + nf);
+                System.out.println(
+                                "PIS: " + nf.getValorPis() + "\n | COFINS: " + nf.getValorCofins() + "\n | ISS: "
+                                                + nf.getValorIss()
+                                                + "\nIRPJ" + nf.getValorIrpj() + "\nCSLL" + nf.getvalorCsll());
+        }
 }

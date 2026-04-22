@@ -7,13 +7,10 @@ public class Laboratorio {
     private String nome;
     private TipoLaboratorioEnum tipo;
 
-<<<<<<< HEAD
-    public Laboratorio(Integer id, String nome, TipoLaboratorio tipo) {
-        this.id = id;
-=======
+
     public Laboratorio(Integer id, String nome, TipoLaboratorioEnum tipo) {
         this.id= id;
->>>>>>> f61cb4486e6f5c63747563fdc9a53fb73ee94e89
+ 
         this.nome = nome;
         this.tipo = tipo;
     }

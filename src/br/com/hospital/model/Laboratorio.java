@@ -6,7 +6,7 @@ public class Laboratorio {
     private TipoLaboratorio tipo;
 
     public Laboratorio(Integer id, String nome, TipoLaboratorio tipo) {
-        this.id= id;
+        this.id = id;
         this.nome = nome;
         this.tipo = tipo;
     }
@@ -39,5 +39,5 @@ public class Laboratorio {
     public void setTipo(TipoLaboratorio tipo) {
         this.tipo = tipo;
     }
-    
+
 }

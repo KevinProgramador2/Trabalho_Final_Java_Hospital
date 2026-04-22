@@ -87,7 +87,7 @@ CREATE TABLE prescricao (
   medicamento_id INT NOT NULL,
   CONSTRAINT fk_prescricao_atendimento FOREIGN KEY (atendimento_id) REFERENCES atendimento(id_atendimento)
     ON DELETE RESTRICT,
-  CONSTRAINT fk_prescricao_medicamento FOREIGN KEY (medicamento_id) REFERENCES medicamento(id_medico)
+  CONSTRAINT fk_prescricao_medicamento FOREIGN KEY (medicamento_id) REFERENCES medicamento(id_medicamento)
     ON DELETE RESTRICT
 );
 
@@ -154,11 +154,8 @@ CREATE TABLE notaFiscal (
   irpj DECIMAL(10,2) NOT NULL,
   csll DECIMAL(10,2) NOT NULL,
   fatura_id INT UNIQUE NOT NULL,
-<<<<<<< HEAD
-  FOREIGN KEY (fatura_id) REFERENCES fatura(id)
-);
-=======
+
   CONSTRAINT fk_notaFiscal_fatura FOREIGN KEY (fatura_id) REFERENCES fatura(id_fatura)
     ON DELETE RESTRICT
 );
->>>>>>> c8ecf56dfbd74b510e24e961c4ab0867cbc62f99
+

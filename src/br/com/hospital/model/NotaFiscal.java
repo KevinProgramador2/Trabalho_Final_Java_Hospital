@@ -94,15 +94,14 @@ public class NotaFiscal {
         this.fatura = fatura;
     }
 
-
-public void calcularImpostos() {
+    public void calcularImpostos() {
         {
 
-            this.valorPis = (0.65 / 100);
-            this.valorCofins = (3.00 / 100);
-            this.valorIss = (1.20 / 100);
-            this.valorCsll = (1.08 / 100);
-            this.valorIrpj = (1.20 / 100);
+            this.valorPis = 0.0065;
+            this.valorCofins = 0.03;
+            this.valorIss = 0.012;
+            this.valorCsll = 0.0108;
+            this.valorIrpj = 0.012;
 
         }
     }

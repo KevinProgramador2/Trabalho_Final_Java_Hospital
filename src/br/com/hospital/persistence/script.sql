@@ -8,14 +8,14 @@ CREATE TABLE hospital (
 
 CREATE TABLE credenciamento (
   id_credenciamento SERIAL NOT NULL,
+  dataCredenciamento TIMESTAMP NOT NULL,
   hospital_id INT NOT NULL,
   planoSaude_id INT NOT NULL,
-  dataCredenciamento TIMESTAMP NOT NULL,
-  UNIQUE (hospital_id, planoSaude_id),
 
+  UNIQUE(hospital_id, planoSaude_id),
   CONSTRAINT fk_credencial_hospital FOREIGN KEY hospital_id REFERENCES hospital(id_hospital)
     ON DELETE RESTRICT,
-  CONSTRAINT fk_credencial_plano FOREIGN KEY planoSaude_id REFERENCES plano(id_planoSaude)
+  CONSTRAINT fk_credencial_plano FOREIGN KEY planoSaude_id REFERENCES planoSaude(id_planoSaude)
     ON DELETE RESTRICT
 );
 
@@ -114,11 +114,11 @@ CREATE TABLE medicamento (
 
 CREATE TABLE prescricao (
   id_prescricao SERIAL PRIMARY KEY,
-  atendimento_id INT NOT NULL,
-  medicamento_id INT NOT NULL,
   dataPrescricao DATE NOT NULL,
   dosagem VARCHAR(50) NOT NULL,
   quantidade INT NOT NULL,
+  atendimento_id INT NOT NULL,
+  medicamento_id INT NOT NULL,
 
   CONSTRAINT fk_prescricao_atendimento FOREIGN KEY (atendimento_id) REFERENCES atendimento(id_atendimento)
     ON DELETE RESTRICT,

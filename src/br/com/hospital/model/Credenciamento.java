@@ -4,23 +4,21 @@ import java.time.LocalDate;
 
 public class Credenciamento {
     private Integer id;
+    private LocalDate dataCredenciamento;
     private Hospital hospital;
     private PlanoSaude planoSaude;
-    private LocalDate dataCredenciamento;
-    
-    public Credenciamento(Integer id, Hospital hospital, PlanoSaude planoSaude, LocalDate dataCredenciamento) {
+
+    public Credenciamento(Integer id, LocalDate dataCredenciamento, Hospital hospital, PlanoSaude planoSaude) {
         this.id = id;
+        this.dataCredenciamento = dataCredenciamento;
         this.hospital = hospital;
         this.planoSaude = planoSaude;
-        this.dataCredenciamento = dataCredenciamento;
-        hospital.addCredenciamento(this);
-        planoSaude.addCredenciamento(this);
     }
 
     @Override
     public String toString() {
-        return "Credenciamento [id=" + id + ", hospital=" + hospital + ", planoSaude=" + planoSaude
-                + ", dataCredenciamento=" + dataCredenciamento + "]";
+        return "Credenciamento [id=" + id + ", dataCredenciamento=" + dataCredenciamento + ", hospital=" + hospital
+                + ", planoSaude=" + planoSaude + "]";
     }
 
     public Integer getId() {

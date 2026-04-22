@@ -4,27 +4,26 @@ import java.time.LocalDate;
 
 public class Prescricao {
     private Integer id;
-    private Atendimento atendimento;
-    private Medicamento medicamento;
     private LocalDate dataPrescricao;
     private String dosagem;
     private Integer quantidade;
+    private Atendimento atendimento;
+    private Medicamento medicamento;
 
-    public Prescricao(Integer id, Atendimento atendimento, Medicamento medicamento, LocalDate dataPrescricao, String dosagem,
-            Integer quantidade) {
+    public Prescricao(Integer id, LocalDate dataPrescricao, String dosagem, Integer quantidade, Atendimento atendimento,
+            Medicamento medicamento) {
         this.id = id;
-        this.atendimento = atendimento;
-        this.medicamento = medicamento;
         this.dataPrescricao = dataPrescricao;
         this.dosagem = dosagem;
         this.quantidade = quantidade;
-        atendimento.prescreverMedicamento(this);
+        this.atendimento = atendimento;
+        this.medicamento = medicamento;
     }
 
     @Override
     public String toString() {
-        return "Prescricao [id=" + id + ", atendimento=" + atendimento + ", medicamento=" + medicamento + ", dataPrescricao="
-                + dataPrescricao + ", dosagem=" + dosagem + ", quantidade=" + quantidade + "]";
+        return "Prescricao [id=" + id + ", dataPrescricao=" + dataPrescricao + ", dosagem=" + dosagem + ", quantidade="
+                + quantidade + ", atendimento=" + atendimento + ", medicamento=" + medicamento + "]";
     }
 
     public Integer getId() {

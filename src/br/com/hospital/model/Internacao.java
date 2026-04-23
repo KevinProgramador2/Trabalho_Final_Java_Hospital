@@ -10,18 +10,10 @@ public class Internacao implements Servico {
     private Integer id;
     private LocalDate dataEntrada;
     private LocalDate dataSaida;
-    private Paciente paciente;
+    private Cliente paciente;
     private Cliente cliente;
     private Leito leito;
     private TipoServicoEnum tipoServico;
-
-    public Internacao(Integer id, LocalDate dataEntrada, Paciente paciente, Leito leito) {
-        this.id = id;
-        this.dataEntrada = dataEntrada;
-        this.paciente = paciente;
-        leito.ocupar();
-        this.leito = leito;
-    }
 
     public Internacao(Integer id, LocalDate dataEntrada, Cliente cliente, Leito leito) {
         this.id = id;
@@ -55,11 +47,11 @@ public class Internacao implements Servico {
         this.id = id;
     }
 
-    public Paciente getPaciente() {
+    public Cliente getPaciente() {
         return paciente;
     }
 
-    public void setPaciente(Paciente paciente) {
+    public void setPaciente(Cliente paciente) {
         this.paciente = paciente;
     }
 

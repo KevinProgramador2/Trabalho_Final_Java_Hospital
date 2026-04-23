@@ -7,6 +7,7 @@ import java.util.List;
 import br.com.hospital.model.enums.StatusAtendimentoEnum;
 import br.com.hospital.model.enums.TipoAtendimentoEnum;
 import br.com.hospital.model.enums.TipoServicoEnum;
+import br.com.hospital.model.interfaces.Cliente;
 import br.com.hospital.model.interfaces.Servico;
 
 public class Atendimento implements Servico {
@@ -16,12 +17,12 @@ public class Atendimento implements Servico {
     private TipoServicoEnum tipoServico;
     private StatusAtendimentoEnum status;
     private String observacao;
-    private Paciente paciente;
+    private Cliente paciente;
     private Medico medico;
     private List<Prescricao> medicamentos = new ArrayList<>();
 
     public Atendimento(Integer id, LocalDateTime dataAtendimento, TipoAtendimentoEnum tipoAtendimento,
-            StatusAtendimentoEnum status, Paciente paciente, Medico medico) {
+            StatusAtendimentoEnum status, Cliente paciente, Medico medico) {
         this.id = id;
         this.dataAtendimento = dataAtendimento;
         this.tipoAtendimento = tipoAtendimento;
@@ -87,11 +88,11 @@ public class Atendimento implements Servico {
         this.observacao = observacao;
     }
 
-    public Paciente getPaciente() {
+    public Cliente getPaciente() {
         return paciente;
     }
 
-    public void setPaciente(Paciente paciente) {
+    public void setPaciente(Cliente paciente) {
         this.paciente = paciente;
     }
 

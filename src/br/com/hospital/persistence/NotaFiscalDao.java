@@ -47,7 +47,7 @@ public class NotaFiscalDao {
 
                 Cliente c = new Paciente("Roberto", "1234553411", "22445533", "Rua Alamida 23", LocalDate.now(), 1);
 
-                Servico s = new Internacao(1, LocalDate.now(), c, l);
+                Servico s = new Internacao(1, LocalDate.ofYearDay(2026, 10), c, l);
 
                 BigDecimal valor = new BigDecimal("5000.00");
 

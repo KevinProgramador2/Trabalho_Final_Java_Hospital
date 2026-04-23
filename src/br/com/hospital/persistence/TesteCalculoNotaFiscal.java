@@ -10,6 +10,7 @@ import br.com.hospital.model.Fatura;
 import br.com.hospital.model.FormaPagamentoEnum;
 import br.com.hospital.model.NotaFiscal;
 import br.com.hospital.model.Paciente;
+import br.com.hospital.model.enums.ImpostosEnum;
 import br.com.hospital.model.enums.ServicoEnum;
 import br.com.hospital.model.enums.StatusCobrancaEnum;
 
@@ -25,8 +26,7 @@ public class TesteCalculoNotaFiscal {
                                 StatusCobrancaEnum.EM_ANALISE,
                                 FormaPagamentoEnum.PIX, c, ServicoEnum.INTERNCACAO);
 
-                NotaFiscal nf = new NotaFiscal("Clínica Saúde XPTO Ltda.", "João Da Silva", 32.50, 150.0, 54.0, 60.0,
-                                54.0,
+                NotaFiscal nf = new NotaFiscal("Clínica Saúde XPTO Ltda.", "João Da Silva", ImpostosEnum.ISS.getValor(), ImpostosEnum.PIS.getValor(), ImpostosEnum.COFINS.getValor(), ImpostosEnum.IRPJ.getValor(), ImpostosEnum.CSLL.getValor(),
                                 f);
 
                 nf.calcularImpostos();
@@ -35,22 +35,17 @@ public class TesteCalculoNotaFiscal {
 
                 System.out.println("Nota Fiscal gerada: " + nf);
 
-                System.out.println("=== DETALHAMENTO DE IMPOSTOS ===");
+                System.out.println("=== RESUMO DOS IMPOSTOS ===");
 
-                System.out.println("PIS:    " + valor.multiply(BigDecimal.valueOf(nf.getValorPis())).setScale(2,
-                                RoundingMode.HALF_UP));
+                System.out.println("ISS:    " + valor.multiply(nf.getValorIss()).setScale(2, RoundingMode.HALF_UP));
+                
+                System.out.println("PIS:    " + valor.multiply(nf.getValorPis()).setScale(2, RoundingMode.HALF_UP));
+                
+                System.out.println("COFINS: " + valor.multiply(nf.getValorCofins()).setScale(2, RoundingMode.HALF_UP));
 
-                System.out.println("COFINS: " + valor.multiply(BigDecimal.valueOf(nf.getValorCofins())).setScale(2,
-                                RoundingMode.HALF_UP));
+                System.out.println("IRPJ:   " + valor.multiply(nf.getValorIrpj()).setScale(2, RoundingMode.HALF_UP));
 
-                System.out.println("ISS:    " + valor.multiply(BigDecimal.valueOf(nf.getValorIss())).setScale(2,
-                                RoundingMode.HALF_UP));
-
-                System.out.println("IRPJ:   " + valor.multiply(BigDecimal.valueOf(nf.getValorIrpj())).setScale(2,
-                                RoundingMode.HALF_UP));
-
-                System.out.println("CSLL:   " + valor.multiply(BigDecimal.valueOf(nf.getvalorCsll())).setScale(2,
-                                RoundingMode.HALF_UP));
+                System.out.println("CSLL:   " + valor.multiply(nf.getvalorCsll()).setScale(2, RoundingMode.HALF_UP));
 
                 System.out.println("================================");
         }

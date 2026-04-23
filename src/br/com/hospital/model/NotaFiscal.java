@@ -1,19 +1,22 @@
 package br.com.hospital.model;
 
+import java.math.BigDecimal;
+
+import br.com.hospital.model.enums.ImpostosEnum;
 
 public class NotaFiscal {
 
     private String emissor;
     private String paciente;
-    private double valorIss;
-    private double valorPis;
-    private double valorCofins;
-    private double valorIrpj;
-    private double valorCsll;
+    private BigDecimal valorIss;
+    private BigDecimal valorPis;
+    private BigDecimal valorCofins;
+    private BigDecimal valorIrpj;
+    private BigDecimal valorCsll;
     private Fatura fatura;
 
-    public NotaFiscal(String emissor, String paciente, double valorIss, double valorPis, double valorCofins,
-            double irpj, double csll, Fatura fatura) {
+    public NotaFiscal(String emissor, String paciente, BigDecimal valorIss, BigDecimal valorPis, BigDecimal valorCofins,
+            BigDecimal irpj, BigDecimal csll, Fatura fatura) {
         this.emissor = emissor;
         this.paciente = paciente;
         this.valorIss = valorIss;
@@ -47,43 +50,43 @@ public class NotaFiscal {
         this.paciente = paciente;
     }
 
-    public double getValorIss() {
+    public BigDecimal getValorIss() {
         return valorIss;
     }
 
-    public void setValorIss(double valorIss) {
+    public void setValorIss(BigDecimal valorIss) {
         this.valorIss = valorIss;
     }
 
-    public double getValorPis() {
+    public BigDecimal getValorPis() {
         return valorPis;
     }
 
-    public void setValorPis(double valorPis) {
+    public void setValorPis(BigDecimal valorPis) {
         this.valorPis = valorPis;
     }
 
-    public double getValorCofins() {
+    public BigDecimal getValorCofins() {
         return valorCofins;
     }
 
-    public void setValorCofins(double valorCofins) {
+    public void setValorCofins(BigDecimal valorCofins) {
         this.valorCofins = valorCofins;
     }
 
-    public double getValorIrpj() {
+    public BigDecimal getValorIrpj() {
         return valorIrpj;
     }
 
-    public void setValorIrpj(double valorIrpj) {
+    public void setValorIrpj(BigDecimal valorIrpj) {
         this.valorIrpj = valorIrpj;
     }
 
-    public double getvalorCsll() {
+    public BigDecimal getvalorCsll() {
         return valorCsll;
     }
 
-    public void setvalorCsll(double valorCsll) {
+    public void setvalorCsll(BigDecimal valorCsll) {
         this.valorCsll = valorCsll;
     }
 
@@ -97,11 +100,11 @@ public class NotaFiscal {
 
     public void calcularImpostos() {
         {
-            this.valorPis = 0.0065;
-            this.valorCofins = 0.03;
-            this.valorIss = 0.012;
-            this.valorCsll = 0.0108;
-            this.valorIrpj = 0.012;
+            this.valorPis = ImpostosEnum.PIS.getValor();
+            this.valorCofins = ImpostosEnum.COFINS.getValor();
+            this.valorIss = ImpostosEnum.ISS.getValor();
+            this.valorCsll = ImpostosEnum.CSLL.getValor();
+            this.valorIrpj = ImpostosEnum.IRPJ.getValor();
 
         }
     }

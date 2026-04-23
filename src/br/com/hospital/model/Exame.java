@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import br.com.hospital.model.enums.TipoExameEnum;
 import br.com.hospital.model.enums.TipoServicoEnum;
+import br.com.hospital.model.interfaces.Cliente;
 import br.com.hospital.model.interfaces.Servico;
 
 // exame foi separado de laudo para fins de facilitar
@@ -15,13 +16,13 @@ public class Exame implements Servico{
     private BigDecimal custo;
     private String descricao;
     private LocalDateTime dataSolicitacao;
-    private Paciente paciente;
+    private Cliente paciente;
     private Medico responsavel;
     private Laboratorio laboratorio;
     private TipoServicoEnum tipoServico;
     
     public Exame(Integer id, TipoExameEnum tipoExame, BigDecimal custo, LocalDateTime dataSolicitacao,
-            Paciente paciente, Medico responsavel, Laboratorio laboratorio) {
+            Cliente paciente, Medico responsavel, Laboratorio laboratorio) {
         this.id = id;
         this.tipoExame = tipoExame;
         this.custo = custo;
@@ -84,11 +85,11 @@ public class Exame implements Servico{
         this.dataSolicitacao = dataSolicitacao;
     }
 
-    public Paciente getPaciente() {
+    public Cliente getPaciente() {
         return paciente;
     }
 
-    public void setPaciente(Paciente paciente) {
+    public void setPaciente(Cliente paciente) {
         this.paciente = paciente;
     }
 

@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.hospital.model.enums.CoberturaPlano;
+import br.com.hospital.model.interfaces.Cliente;
+
 public class PlanoSaude implements Cliente {
     private Integer id;
     private String nome;

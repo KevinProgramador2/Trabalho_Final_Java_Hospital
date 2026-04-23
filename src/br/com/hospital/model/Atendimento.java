@@ -7,22 +7,25 @@ import java.util.List;
 
 import br.com.hospital.model.enums.StatusAtendimentoEnum;
 import br.com.hospital.model.enums.TipoAtendimentoEnum;
+import br.com.hospital.model.enums.TipoServicoEnum;
+import br.com.hospital.model.interfaces.Servico;
 
-public class Atendimento {
+public class Atendimento implements Servico{
     private Integer id;
     private LocalDateTime dataAtendimento;
-    private TipoAtendimentoEnum tipo;
+    private TipoAtendimentoEnum tipoAtendimento;
+    private TipoServicoEnum tipoServico;
     private StatusAtendimentoEnum status;
     private String observacao;
     private Paciente paciente;
     private Medico medico;
     private List<Prescricao> medicamentos= new ArrayList<>();
-    
-    public Atendimento(Integer id, LocalDateTime dataAtendimento, TipoAtendimentoEnum tipo,
+
+    public Atendimento(Integer id, LocalDateTime dataAtendimento, TipoAtendimentoEnum tipoAtendimento,
             StatusAtendimentoEnum status, Paciente paciente, Medico medico) {
         this.id = id;
         this.dataAtendimento = dataAtendimento;
-        this.tipo = tipo;
+        this.tipoAtendimento = tipoAtendimento;
         this.status = status;
         this.paciente = paciente;
         this.medico = medico;
@@ -30,33 +33,23 @@ public class Atendimento {
 
     @Override
     public String toString() {
-        return "Atendimento [id=" + id + ", dataAtendimento=" + dataAtendimento + ", tipo=" + tipo + ", status="
-                + status + ", observacao=" + observacao + ", paciente=" + paciente + ", medico=" + medico
-                + ", medicamentos=" + medicamentos + "]";
+        return "Atendimento [id=" + id + ", dataAtendimento=" + dataAtendimento + ", tipoAtendimento=" + tipoAtendimento
+                + ", status=" + status + ", observacao=" + observacao + ", paciente=" + paciente + ", medico=" + medico
+                + ", " + medicamentos + "]";
     }
 
-    public Integer getId() {
+    @Override
+    public Integer getIdentificador() {
         return id;
+    }
+
+    @Override
+    public TipoServicoEnum getTipoServico() {
+        return tipoServico;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-    
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
-
-    public Medico getMedico() {
-        return medico;
-    }
-
-    public void setMedico(Medico medico) {
-        this.medico = medico;
     }
 
     public LocalDateTime getDataAtendimento() {
@@ -67,12 +60,16 @@ public class Atendimento {
         this.dataAtendimento = dataAtendimento;
     }
 
-    public TipoAtendimentoEnum getTipo() {
-        return tipo;
+    public TipoAtendimentoEnum getTipoAtendimento() {
+        return tipoAtendimento;
     }
 
-    public void setTipo(TipoAtendimentoEnum tipo) {
-        this.tipo = tipo;
+    public void setTipoAtendimento(TipoAtendimentoEnum tipoAtendimento) {
+        this.tipoAtendimento = tipoAtendimento;
+    }
+
+    public void setTipoServico(TipoServicoEnum tipoServico) {
+        this.tipoServico = tipoServico;
     }
 
     public StatusAtendimentoEnum getStatus() {
@@ -89,6 +86,22 @@ public class Atendimento {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public Medico getMedico() {
+        return medico;
+    }
+
+    public void setMedico(Medico medico) {
+        this.medico = medico;
     }
 
     public List<Prescricao> getMedicamentos() {

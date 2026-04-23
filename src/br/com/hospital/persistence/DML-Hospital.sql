@@ -284,27 +284,47 @@ INSERT INTO hospital.atendimento (id_atendimento, dataatendimento, tipo, statusa
 (14, '2026-04-25 09:00:00', 'Consulta', 'AGENDADO', 'Avaliação oncológica.', 6, 6),
 (15, '2026-04-19 14:00:00', 'Consulta', 'REALIZADO', 'Encaminhamento para exames.', 4, 7);
 
+--inserindo o registro de serviços (atendimento, exame ou internação)
+
+insert into hospital.servico(tipo, atendimento_id, exame_id, internacao_id) values
+('ATENDIMENTO', 1, null, null),
+('EXAME', null, 11, null),
+('EXAME', null, 12, null),
+('EXAME', null, 13, null),
+('EXAME', null, 14, null),
+('EXAME', null, 15, null),
+('EXAME', null, 16, null),
+('EXAME', null, 17, null),
+('EXAME', null, 18, null),
+('EXAME', null, 19, null),
+('EXAME', null, 20, null),
+('ATENDIMENTO', 15, null, null),
+('EXAME', null, 1, null),
+('ATENDIMENTO', 9, null, null),
+('EXAME', null, 6, null),
+('INTERNACAO', null, null, 1);
+
 --inserindo faturas
 
-INSERT INTO hospital.fatura (numero, valor, dataemissao, datavencimento, statuscobranca, formapagamento, servico, paciente_id, planosaude_id) VALUES 
-('FAT-001', 100.00, '2026-04-20', '2026-05-20', 'PENDENTE', 'Dinheiro', 'Consulta', 1, NULL);
+INSERT INTO hospital.fatura (numero, valor, dataemissao, datavencimento, statuscobranca, formapagamento, servico_id, paciente_id, planosaude_id) VALUES 
+('FAT-001', 100.00, '2026-04-20', '2026-05-20', 'PENDENTE', 'Dinheiro', 1, 1, NULL);
 
-INSERT INTO hospital.fatura (numero, valor, dataemissao, datavencimento, statuscobranca, formapagamento, servico, paciente_id, planosaude_id) VALUES 
-('FAT-021', 55.00, '2026-04-20', '2026-05-20', 'PAGO', 'Pix', 'TSH e T4', 5, NULL),
-('FAT-022', 70.00, '2026-04-20', '2026-05-20', 'EM_ANALISE', 'Boleto', 'PSA Livre', 6, NULL),
-('FAT-023', 110.00, '2026-04-21', '2026-05-21', 'PENDENTE', 'Cartao', 'Raio-X Coluna', 1, NULL),
-('FAT-024', 350.00, '2026-04-21', '2026-05-21', 'PAGO', 'Transfer', 'Endoscopia', 2, NULL),
-('FAT-025', 180.00, '2026-04-21', '2026-05-21', 'EM_ANALISE', 'Debito', 'Eletroencef.', 3, NULL),
-('FAT-026', 220.00, '2026-04-22', '2026-05-22', 'PAGO', 'Pix', 'Ultra Morfo.', 4, NULL),
-('FAT-027', 90.00, '2026-04-22', '2026-05-22', 'PENDENTE', 'Boleto', 'Vit. D e B12', 5, NULL),
-('FAT-028', 150.00, '2026-04-22', '2026-05-22', 'CANCELADO', 'Cartao', 'Mamografia', 6, NULL),
-('FAT-029', 130.00, '2026-04-23', '2026-05-23', 'PAGO', 'Pix', 'Teste Ergom.', 1, NULL),
-('FAT-030', 85.00, '2026-04-23', '2026-05-23', 'EM_ANALISE', 'Debito', 'Audiometria', 2, NULL),
-('FAT-031', 300.00, '2026-04-23', '2026-05-23', 'PENDENTE', 'Boleto', 'Consulta Esp.', 3, NULL),
-('FAT-032', 45.00, '2026-04-24', '2026-05-24', 'PAGO', 'Dinheiro', 'Hemograma', 4, NULL),
-('FAT-033', 500.00, '2026-04-24', '2026-05-24', 'EM_ANALISE', 'Cartao', 'Sessao Terapia', 5, NULL),
-('FAT-034', 60.00, '2026-04-24', '2026-05-24', 'CANCELADO', 'Pix', 'Beta HCG', 6, NULL),
-('FAT-035', 1200.00, '2026-04-24', '2026-05-24', 'PENDENTE', 'Boleto', 'Internacao', 1, NULL);
+INSERT INTO hospital.fatura (numero, valor, dataemissao, datavencimento, statuscobranca, formapagamento, servico_id, paciente_id, planosaude_id) VALUES 
+('FAT-021', 55.00, '2026-04-20', '2026-05-20', 'PAGO', 'Pix', 2, 5, NULL),
+('FAT-022', 70.00, '2026-04-20', '2026-05-20', 'EM_ANALISE', 'Boleto', 3, 6, NULL),
+('FAT-023', 110.00, '2026-04-21', '2026-05-21', 'PENDENTE', 'Cartao', 4, 1, NULL),
+('FAT-024', 350.00, '2026-04-21', '2026-05-21', 'PAGO', 'Transfer', 5, 2, NULL),
+('FAT-025', 180.00, '2026-04-21', '2026-05-21', 'EM_ANALISE', 'Debito', 6, 3, NULL),
+('FAT-026', 220.00, '2026-04-22', '2026-05-22', 'PAGO', 'Pix', 7, 4, NULL),
+('FAT-027', 90.00, '2026-04-22', '2026-05-22', 'PENDENTE', 'Boleto', 8, 5, NULL),
+('FAT-028', 150.00, '2026-04-22', '2026-05-22', 'CANCELADO', 'Cartao', 9, 6, NULL),
+('FAT-029', 130.00, '2026-04-23', '2026-05-23', 'PAGO', 'Pix', 10, 1, NULL),
+('FAT-030', 85.00, '2026-04-23', '2026-05-23', 'EM_ANALISE', 'Debito', 11, 2, NULL),
+('FAT-031', 300.00, '2026-04-23', '2026-05-23', 'PENDENTE', 'Boleto', 12, 3, NULL),
+('FAT-032', 45.00, '2026-04-24', '2026-05-24', 'PAGO', 'Dinheiro', 13, 4, NULL),
+('FAT-033', 500.00, '2026-04-24', '2026-05-24', 'EM_ANALISE', 'Cartao', 14, 5, NULL),
+('FAT-034', 60.00, '2026-04-24', '2026-05-24', 'CANCELADO', 'Pix', 15, 6, NULL),
+('FAT-035', 1200.00, '2026-04-24', '2026-05-24', 'PENDENTE', 'Boleto', 16, 1, NULL);
 
 
 --inserindo credenciamento
@@ -339,7 +359,3 @@ INSERT INTO hospital.prescricao (dataprescricao, dosagem, quantidade, atendiment
 ('2026-04-19', '500mg - dose única', 1, 15, 8),
 ('2026-04-21', '2g - intravenoso', 1, 3, 9),
 ('2026-04-20', '10mg - se houver dor', 1, 1, 10);
-
-
-
-

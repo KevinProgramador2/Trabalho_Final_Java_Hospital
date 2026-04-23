@@ -2,17 +2,31 @@ package br.com.hospital.model;
 
 import java.time.LocalDate;
 
-public class Internacao {
+import br.com.hospital.model.enums.TipoServicoEnum;
+import br.com.hospital.model.interfaces.Servico;
+import br.com.hospital.model.interfaces.Cliente;
+
+public class Internacao implements Servico{
     private Integer id;
     private LocalDate dataEntrada;
     private LocalDate dataSaida;
     private Paciente paciente;
+    private Cliente cliente;
     private Leito leito;
+    private TipoServicoEnum tipoServico;
     
     public Internacao(Integer id, LocalDate dataEntrada, Paciente paciente, Leito leito) {
         this.id = id;
         this.dataEntrada = dataEntrada;
         this.paciente = paciente;
+        leito.ocupar();
+        this.leito = leito;
+    }
+
+    public Internacao(Integer id, LocalDate dataEntrada, Cliente cliente, Leito leito) {
+        this.id = id;
+        this.dataEntrada = dataEntrada;
+        this.cliente = cliente;
         leito.ocupar();
         this.leito = leito;
     }
@@ -26,8 +40,14 @@ public class Internacao {
                     + dataEntrada + "]";
     }
 
-    public Integer getId() {
+    @Override
+    public Integer getIdentificador() {
         return id;
+    }
+
+    @Override
+    public TipoServicoEnum getTipoServico() {
+        return tipoServico;
     }
 
     public void setId(Integer id) {
@@ -69,6 +89,10 @@ public class Internacao {
     public void darAlta(LocalDate data) {
         this.leito.liberar();
         this.dataSaida= data;
+    }
+
+    public void setTipoServico(TipoServicoEnum tipoServico) {
+        this.tipoServico = tipoServico;
     }
 
 }

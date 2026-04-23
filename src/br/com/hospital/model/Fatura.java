@@ -3,7 +3,10 @@ package br.com.hospital.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import br.com.hospital.model.enums.ServicoEnum;
+import br.com.hospital.model.enums.TipoServicoEnum;
+import br.com.hospital.model.interfaces.Cliente;
+import br.com.hospital.model.interfaces.Servico;
+import br.com.hospital.model.enums.FormaPagamentoEnum;
 import br.com.hospital.model.enums.StatusCobrancaEnum;
 
 public class Fatura {
@@ -14,12 +17,12 @@ public class Fatura {
     private LocalDate dataVencimento;
     private StatusCobrancaEnum statusCobranca;
     private FormaPagamentoEnum formaPagamento;
-    private Cliente pagador;
-    private ServicoEnum servico;
+    private Servico servico;
+    private Cliente cliente;
 
     public Fatura(Integer id, String numero, BigDecimal valor, LocalDate dataEmissao, LocalDate dataVencimento,
-            StatusCobrancaEnum statusCobranca, FormaPagamentoEnum formaPagamento, Cliente pagador,
-            ServicoEnum servico) {
+            StatusCobrancaEnum statusCobranca, FormaPagamentoEnum formaPagamento, Servico servico,
+            Cliente cliente) {
         this.id = id;
         this.numero = numero;
         this.valor = valor;
@@ -27,15 +30,15 @@ public class Fatura {
         this.dataVencimento = dataVencimento;
         this.statusCobranca = statusCobranca;
         this.formaPagamento = formaPagamento;
-        this.pagador = pagador;
         this.servico = servico;
+        this.cliente = cliente;
     }
 
     @Override
     public String toString() {
         return "Fatura [id=" + id + ", numero=" + numero + ", valor=" + valor + ", dataEmissao=" + dataEmissao
                 + ", dataVencimento=" + dataVencimento + ", statusCobranca=" + statusCobranca + ", formaPagamento="
-                + formaPagamento + ", pagador=" + pagador + ", servico=" + servico + "]";
+                + formaPagamento + ", servico=" + servico + ", cliente=" + cliente + "]";
     }
 
     public void pagar(FormaPagamentoEnum formaPagamento) {
@@ -98,19 +101,19 @@ public class Fatura {
         this.formaPagamento = formaPagamento;
     }
 
-    public Cliente getPagador() {
-        return pagador;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setPagador(Cliente pagador) {
-        this.pagador = pagador;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public ServicoEnum getServico() {
+    public Servico getServico() {
         return servico;
     }
 
-    public void setServico(ServicoEnum servico) {
+    public void setServico(Servico servico) {
         this.servico = servico;
     }
 

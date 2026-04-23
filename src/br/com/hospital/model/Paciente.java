@@ -2,6 +2,8 @@ package br.com.hospital.model;
 
 import java.time.LocalDate;
 
+import br.com.hospital.model.interfaces.Cliente;
+
 public class Paciente extends Pessoa implements Cliente {
     private Integer id;
 

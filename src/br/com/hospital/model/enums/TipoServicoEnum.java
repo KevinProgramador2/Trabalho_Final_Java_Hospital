@@ -1,5 +1,5 @@
 package br.com.hospital.model.enums;
 
-public enum ServicoEnum {
+public enum TipoServicoEnum {
     ATENDIMENTO, EXAME, INTERNCACAO
 }

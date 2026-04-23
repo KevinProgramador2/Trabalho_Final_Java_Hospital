@@ -24,12 +24,11 @@ public class Enfermeiro extends Pessoa {
 
     // construtor usado para enfermeiras-chefe.
     public Enfermeiro(Integer id, String nome, String cpf, String telefone, String endereco, LocalDate dataNascimento, String cre,
-            TurnoEnum turno, Ala ala) {
+            TurnoEnum turno) {
         super(nome, cpf, telefone, endereco, dataNascimento);
         this.id= id;
         this.cre = cre;
         this.turno = turno;
-        this.ala = ala;
     }
 
     // o if verifica se chefe está nulo (o que indica ser uma enfermeira-chefe, caso contrário, é enfermeira subordinada).

@@ -4,10 +4,13 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.Connection;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import br.com.hospital.conexao.ConnectionFactory;
 import br.com.hospital.model.Ala;
+import br.com.hospital.model.Cliente;
 import br.com.hospital.model.Enfermeiro;
 import br.com.hospital.model.Fatura;
 import br.com.hospital.model.Hospital;
@@ -18,55 +21,21 @@ import br.com.hospital.model.Paciente;
 import br.com.hospital.model.enums.FormaPagamentoEnum;
 import br.com.hospital.model.enums.ImpostosEnum;
 import br.com.hospital.model.enums.TurnoEnum;
-import br.com.hospital.model.interfaces.Cliente;
-import br.com.hospital.model.interfaces.Servico;
 import br.com.hospital.model.enums.StatusCobrancaEnum;
 import br.com.hospital.model.enums.StatusLeitoEnum;
 import br.com.hospital.model.enums.TipoAlaEnum;
+import br.com.hospital.model.enums.TipoServicoEnum;
 
 public class NotaFiscalDao {
-
         public static void main(String[] args) {
                 Connection connection = new ConnectionFactory().getConnection();
                 Scanner sc = new Scanner(System.in);
+                FaturaDao fd= new FaturaDao();
 
-                Hospital h = new Hospital(1, "Hospital Geral de Clínicas", "23866957578");
+                System.out.print("Informe o número da fatura: ");
+                String numeroFatura= sc.next();                
 
-                Enfermeiro ef = new Enfermeiro(1,
-                                "Joana D'Arc",
-                                "7868757527",
-                                "2345-8996",
-                                "Rua Barão do Amazonas, 10",
-                                LocalDate.now(), "896557", TurnoEnum.NOITE);
-
-                Ala a = new Ala(1, TipoAlaEnum.UTI, h, ef);
-                ef.setAla(a);
-
-                Leito l = new Leito(1, "10001", StatusLeitoEnum.LIVRE, a);
-                a.addLeito(l);
-
-                Cliente c = new Paciente("Roberto", "1234553411", "22445533", "Rua Alamida 23", LocalDate.now(), 1);
-
-                Servico s = new Internacao(1, LocalDate.ofYearDay(2026, 10), c, l);
-
-                BigDecimal valor = new BigDecimal("5000.00");
-
-                Paciente paciente = new Paciente("Laura",
-                                "1245323311",
-                                "2442663423",
-                                "Rua dos minions",
-                                LocalDate.now(),
-                                1);
-
-                System.out.println(paciente.getNome());
-
-                Fatura f = new Fatura(1,
-                                "22322422",
-                                valor,
-                                LocalDate.now(),
-                                LocalDate.now(),
-                                StatusCobrancaEnum.EM_ANALISE,
-                                FormaPagamentoEnum.PIX, s, c);
+                Fatura f = fd.consultar(numeroFatura);
 
                 NotaFiscal nf = new NotaFiscal(h, c,
                                 ImpostosEnum.ISS.getValor(),
@@ -92,4 +61,6 @@ public class NotaFiscalDao {
 
                 System.out.println("================================");
         }
+
+        public 
 }

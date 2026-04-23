@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import br.com.hospital.model.Atendimento;
+import br.com.hospital.model.Cliente;
 import br.com.hospital.model.Fatura;
 import br.com.hospital.model.Hospital;
 import br.com.hospital.model.Medico;
@@ -21,10 +22,9 @@ import br.com.hospital.model.enums.ImpostosEnum;
 import br.com.hospital.model.enums.StatusAtendimentoEnum;
 import br.com.hospital.model.enums.StatusCobrancaEnum;
 import br.com.hospital.model.enums.TipoAtendimentoEnum;
-import br.com.hospital.model.interfaces.Cliente;
-import br.com.hospital.model.interfaces.Servico;
+import br.com.hospital.model.enums.TipoServicoEnum;
 
-public class GerenciadorArquivos {
+public class EmitirNotaFiscal {
     public static void main(String[] args) {
         try {
             Scanner sc = new Scanner(System.in);
@@ -39,9 +39,8 @@ public class GerenciadorArquivos {
             // Mock de objetos necessários
             Medico medico= new Medico(1, "Maicon Nascimento", "868985765", "2457-8966", "Rua Benjamin Constant", LocalDate.of(1970, 1, 1), "8657575", "Geriatria");
             Hospital hospital = new Hospital(1, "Hospital Central", "18575781254");
-            Cliente cliente = new Paciente("João Silva", "7657857844", "2764-2896", "Rua Barão do Amazonas", LocalDate.of(1970, 01, 01), 1);
-            Servico servico= new Atendimento(1, LocalDateTime.now(), TipoAtendimentoEnum.CONSULTA, StatusAtendimentoEnum.REALIZADO, cliente, medico);
-            Fatura fatura = new Fatura(1, "FAT-001", new BigDecimal("100.0"), LocalDate.now(), LocalDate.of(2026, 4, 30), StatusCobrancaEnum.PENDENTE, FormaPagamentoEnum.DINHEIRO, servico, cliente);
+            Cliente cliente = new Cliente(1, "João Silva");
+            Fatura fatura = new Fatura(1, "FAT-001", new BigDecimal("100.0"), LocalDate.now(), LocalDate.of(2026, 4, 30), StatusCobrancaEnum.PENDENTE, FormaPagamentoEnum.DINHEIRO, TipoServicoEnum.ATENDIMENTO, cliente);
 
             while (scArquivo.hasNext()) {
                 String linha = scArquivo.nextLine();

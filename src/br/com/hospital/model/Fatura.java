@@ -3,10 +3,9 @@ package br.com.hospital.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import br.com.hospital.model.interfaces.Cliente;
-import br.com.hospital.model.interfaces.Servico;
 import br.com.hospital.model.enums.FormaPagamentoEnum;
 import br.com.hospital.model.enums.StatusCobrancaEnum;
+import br.com.hospital.model.enums.TipoServicoEnum;
 
 public class Fatura {
     private Integer id;
@@ -16,11 +15,11 @@ public class Fatura {
     private LocalDate dataVencimento;
     private StatusCobrancaEnum statusCobranca;
     public FormaPagamentoEnum formaPagamento;
-    private Servico servico;
+    private TipoServicoEnum servico;
     private Cliente cliente;
 
     public Fatura(Integer id, String numero, BigDecimal valor, LocalDate dataEmissao, LocalDate dataVencimento,
-            StatusCobrancaEnum statusCobranca, FormaPagamentoEnum formaPagamento, Servico servico,
+            StatusCobrancaEnum statusCobranca, FormaPagamentoEnum formaPagamento, TipoServicoEnum servico,
             Cliente cliente) {
         this.id = id;
         this.numero = numero;
@@ -108,11 +107,11 @@ public class Fatura {
         this.cliente = cliente;
     }
 
-    public Servico getServico() {
+    public TipoServicoEnum getServico() {
         return servico;
     }
 
-    public void setServico(Servico servico) {
+    public void setServico(TipoServicoEnum servico) {
         this.servico = servico;
     }
 

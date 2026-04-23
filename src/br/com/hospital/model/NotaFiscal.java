@@ -3,7 +3,6 @@ package br.com.hospital.model;
 import java.math.BigDecimal;
 
 import br.com.hospital.model.enums.ImpostosEnum;
-import br.com.hospital.model.interfaces.Cliente;
 
 public class NotaFiscal {
 

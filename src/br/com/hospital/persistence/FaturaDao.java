@@ -1,0 +1,73 @@
+package br.com.hospital.persistence;
+
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+
+import br.com.hospital.conexao.ConnectionFactory;
+import br.com.hospital.model.Cliente;
+import br.com.hospital.model.Fatura;
+import br.com.hospital.model.enums.FormaPagamentoEnum;
+import br.com.hospital.model.enums.StatusCobrancaEnum;
+
+public class FaturaDao {
+    private Connection connection;
+
+    public FaturaDao() {
+        connection= new ConnectionFactory().getConnection();
+    }
+    
+    public Fatura consultar(String numero) {
+        String sql1= "select * from fatura where numero= ?";
+        try {
+            PreparedStatement statement1= connection.prepareStatement(sql1);
+            statement1.setString(1, numero);
+            ResultSet rs1= statement1.executeQuery();
+
+            if (!rs1.next()) {
+                throw new Exception("Fatura não encontrada.");
+            }       
+
+            if(StatusCobrancaEnum.valueOf(rs1.getString("statuscobranca"))!= StatusCobrancaEnum.PAGO) {
+                throw new Exception("Fatura não finalizada.");
+            } else {
+                ServicoDao sd= new ServicoDao();
+
+                String sql2= "select nome from cliente where id_cliente= ?";
+                PreparedStatement statement2= connection.prepareStatement(sql2);
+                statement2.setInt(1, rs1.getInt("cliente_id"));
+                ResultSet rs2= statement2.executeQuery();
+                
+                if (!rs2.next()) {
+                    throw new Exception("Cliente não encontrado.");
+                }
+                
+                Cliente cliente= new Cliente(rs1.getInt("cliente_id"), rs2.getString("nome"));
+                
+                return new Fatura(
+                    rs1.getInt("id_fatura"),
+                    rs1.getString("numero"), 
+                    new BigDecimal(rs1.getDouble("valor")),
+                    rs1.getObject("dataemissao", LocalDate.class),
+                    rs1.getObject("datavencimento", LocalDate.class),
+                    StatusCobrancaEnum.valueOf(rs1.getString("statuscobranca")),
+                    FormaPagamentoEnum.valueOf(rs1.getString("formapagamento")),
+                    sd.consultar(rs1.getInt("servico_id")), 
+                    cliente);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Fatura não encontrada.");
+            e.printStackTrace();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+    
+}

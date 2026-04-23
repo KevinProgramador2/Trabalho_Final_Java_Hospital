@@ -1,6 +1,5 @@
 package br.com.hospital.model;
 
-import java.math.BigDecimal;
 
 public class NotaFiscal {
 

@@ -1,5 +1,6 @@
 package br.com.hospital.model;
 
+
 public class NotaFiscal {
 
     private String emissor;
@@ -96,7 +97,6 @@ public class NotaFiscal {
 
     public void calcularImpostos() {
         {
-
             this.valorPis = 0.0065;
             this.valorCofins = 0.03;
             this.valorIss = 0.012;

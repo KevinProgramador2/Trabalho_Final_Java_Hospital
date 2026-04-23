@@ -1,5 +1,5 @@
 package br.com.hospital.model.enums;
 
-public enum ResultadoEnum {
+public enum ResultadoExameEnum {
     NORMAL, ALTERADO, CRITICO
 }

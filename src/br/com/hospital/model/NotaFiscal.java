@@ -3,11 +3,12 @@ package br.com.hospital.model;
 import java.math.BigDecimal;
 
 import br.com.hospital.model.enums.ImpostosEnum;
+import br.com.hospital.model.interfaces.Cliente;
 
 public class NotaFiscal {
 
-    private String emissor;
-    private String paciente;
+    private Hospital emissor;
+    private Cliente cliente;
     private BigDecimal valorIss;
     private BigDecimal valorPis;
     private BigDecimal valorCofins;
@@ -15,10 +16,10 @@ public class NotaFiscal {
     private BigDecimal valorCsll;
     private Fatura fatura;
 
-    public NotaFiscal(String emissor, String paciente, BigDecimal valorIss, BigDecimal valorPis, BigDecimal valorCofins,
+    public NotaFiscal(Hospital emissor, Cliente cliente, BigDecimal valorIss, BigDecimal valorPis, BigDecimal valorCofins,
             BigDecimal irpj, BigDecimal csll, Fatura fatura) {
         this.emissor = emissor;
-        this.paciente = paciente;
+        this.cliente = cliente;
         this.valorIss = valorIss;
         this.valorPis = valorPis;
         this.valorCofins = valorCofins;
@@ -29,25 +30,25 @@ public class NotaFiscal {
 
     @Override
     public String toString() {
-        return "NotaFiscal [emissor=" + emissor + ", paciente=" + paciente + ", valorIss=" + valorIss + ", valorPis="
+        return "NotaFiscal [emissor=" + emissor.getNome() + ", cliente=" + cliente.getNome() + ", valorIss=" + valorIss + ", valorPis="
                 + valorPis + ", valorCofins=" + valorCofins + ", valorIrpj=" + valorIrpj + ", valorCsll=" + valorCsll
-                + ", fatura=" + fatura + "]";
+                + ", fatura=" + fatura.getNumero() + "]";
     }
 
-    public String getEmissor() {
+    public Hospital getEmissor() {
         return emissor;
     }
 
-    public void setEmissor(String emissor) {
+    public void setEmissor(Hospital emissor) {
         this.emissor = emissor;
     }
 
-    public String getPaciente() {
-        return paciente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setPaciente(String paciente) {
-        this.paciente = paciente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public BigDecimal getValorIss() {
@@ -105,7 +106,6 @@ public class NotaFiscal {
             this.valorIss = ImpostosEnum.ISS.getValor();
             this.valorCsll = ImpostosEnum.CSLL.getValor();
             this.valorIrpj = ImpostosEnum.IRPJ.getValor();
-
         }
     }
 }

@@ -58,7 +58,7 @@ CREATE TABLE enfermeiro (
   cre VARCHAR(20) UNIQUE NOT NULL,
   turno VARCHAR(20) NOT NULL,
   pessoa_id INT NOT NULL,
-  ala_id INT NOT NULL,
+  ala_id INT,
   chefe_id INT,
 
   CONSTRAINT fk_enfermeiro_pessoa FOREIGN KEY (pessoa_id) REFERENCES pessoa(id_pessoa)
@@ -181,6 +181,28 @@ CREATE UNIQUE INDEX unico_leito_ocupado
 ON internacao (leito_id)
 WHERE data_saida IS NULL;
 
+CREATE TABLE servico (
+  id_servico SERIAL PRIMARY KEY,
+  tipo VARCHAR(20) NOT NULL,
+  atendimento_id INT null,
+  exame_id INT NULL,
+  internacao_id INT NULL,
+
+  CONSTRAINT fk_servico_atendimento FOREIGN KEY (atendimento_id) REFERENCES atendimento(id_atendimento)
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_servico_exame FOREIGN KEY (exame_id) REFERENCES exame(id_exame)
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_servico_internacao FOREIGN KEY (internacao_id) REFERENCES internacao(id_internacao)
+    ON DELETE RESTRICT,
+  CONSTRAINT chk_tipo_servico CHECK (
+    (atendimento_id IS NOT NULL AND exame_id IS NULL AND internacao_id IS NULL)
+    OR
+    (exame_id IS NOT NULL AND atendimento_id IS NULL AND internacao_id IS NULL)
+    OR
+    (internacao_id IS NOT NULL AND atendimento_id IS NULL AND exame_id IS NULL)
+  )
+);
+
 CREATE TABLE fatura (
   id_fatura SERIAL PRIMARY KEY,
   numero VARCHAR(50) UNIQUE NOT NULL,
@@ -189,10 +211,12 @@ CREATE TABLE fatura (
   dataVencimento DATE NOT NULL,
   statusCobranca VARCHAR(20) NOT NULL,
   formaPagamento VARCHAR(20) NOT NULL,
-  servico VARCHAR(20) NOT NULL,
+  servico_id INT NOT NULL,
   paciente_id INT NULL,
   planoSaude_id INT NULL,
 
+  CONSTRAINT fk_fatura_servico FOREIGN KEY (servico_id) REFERENCES servico(id_servico)
+    ON DELETE RESTRICT,
   CONSTRAINT fk_fatura_paciente FOREIGN KEY (paciente_id) REFERENCES paciente(id_paciente)
     ON DELETE RESTRICT,
   CONSTRAINT fk_fatura_planoSaude FOREIGN KEY (planoSaude_id) REFERENCES planoSaude(id_planoSaude)

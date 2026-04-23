@@ -19,7 +19,7 @@ public class Hospital {
 
     @Override
     public String toString() {
-        return "Hospital [id=" + id + ", nome=" + nome + ", cnpj=" + cnpj + ", alas=" + alas + "]";
+        return "Hospital [id=" + id + ", nome=" + nome + ", cnpj=" + cnpj + ", " + alas + "]";
     }
 
     public Integer getId() {

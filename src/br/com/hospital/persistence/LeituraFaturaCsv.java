@@ -1,12 +1,17 @@
 package br.com.hospital.persistence;
 
 import java.io.File;
+import java.sql.Connection;
 import java.util.Scanner;
+
+import br.com.hospital.conexao.ConnectionFactory;
 
 public class LeituraFaturaCsv {
     public static void main(String[] args) {
         Scanner ler = new Scanner(System.in);
         String nome;
+
+        Connection c = new ConnectionFactory().getConnection();
 
         if (args != null && args.length > 0 && args[0] != null && !args[0].isBlank()) {
             nome = args[0];

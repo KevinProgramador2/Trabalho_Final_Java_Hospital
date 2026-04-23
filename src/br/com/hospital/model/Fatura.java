@@ -16,7 +16,7 @@ public class Fatura {
     private LocalDate dataEmissao;
     private LocalDate dataVencimento;
     private StatusCobrancaEnum statusCobranca;
-    private FormaPagamentoEnum formaPagamento;
+    public FormaPagamentoEnum formaPagamento;
     private Servico servico;
     private Cliente cliente;
 

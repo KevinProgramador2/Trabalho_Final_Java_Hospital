@@ -1,23 +1,30 @@
-package br.com.hospital.persistence;
+package br.com.hospital.persistence.service;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import br.com.hospital.model.Fatura;
+import br.com.hospital.model.Hospital;
 import br.com.hospital.model.NotaFiscal;
+import br.com.hospital.model.Paciente;
+import br.com.hospital.model.Pessoa;
 import br.com.hospital.model.enums.ImpostosEnum;
+import br.com.hospital.model.interfaces.Cliente;
 
 //Responsável por criar, escrever e ler o arquivo
 public class GerenciadorArquivos {
 
     public static void main(String[] args, Fatura fatura) {
 
-        try {
+        try (PreparedStatement stmt = new PreparedStatement() {
+            
+        } ){
             Scanner sc = new Scanner(System.in);
             System.out.println("Digite o nome do arquivo:");
             String nomeArquivo = sc.next();
@@ -31,7 +38,13 @@ public class GerenciadorArquivos {
                     String[] dadosLinha = linha.split(";");
                     String nome = dadosLinha[0];
                     String profissao = dadosLinha[1];
-                    nFiscals.add(new NotaFiscal(nome, profissao, ImpostosEnum.ISS.getValor(), ImpostosEnum.PIS.getValor(), ImpostosEnum.COFINS.getValor(), ImpostosEnum.IRPJ.getValor(), ImpostosEnum.CSLL.getValor(), fatura));
+                    nFiscals.add(new NotaFiscal(,
+                        fatura.getCliente(),
+                        ImpostosEnum.ISS.getValor(),
+                        ImpostosEnum.PIS.getValor(),
+                        ImpostosEnum.COFINS.getValor(),
+                        ImpostosEnum.IRPJ.getValor(),
+                        ImpostosEnum.CSLL.getValor(), fatura));
                 }
             }
             sc.close();

@@ -3,12 +3,14 @@ package br.com.hospital.persistence;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import br.com.hospital.model.Fatura;
 import br.com.hospital.model.NotaFiscal;
+import br.com.hospital.model.enums.ImpostosEnum;
 
 //Responsável por criar, escrever e ler o arquivo
 public class GerenciadorArquivos {
@@ -29,7 +31,7 @@ public class GerenciadorArquivos {
                     String[] dadosLinha = linha.split(";");
                     String nome = dadosLinha[0];
                     String profissao = dadosLinha[1];
-                    nFiscals.add(new NotaFiscal(nome, profissao, 32.50, 150.0, 150.0, 60.0, 54.0, fatura));
+                    nFiscals.add(new NotaFiscal(nome, profissao, ImpostosEnum.ISS.getValor(), ImpostosEnum.PIS.getValor(), ImpostosEnum.COFINS.getValor(), ImpostosEnum.IRPJ.getValor(), ImpostosEnum.CSLL.getValor(), fatura));
                 }
             }
             sc.close();

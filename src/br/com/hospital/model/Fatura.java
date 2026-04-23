@@ -3,7 +3,6 @@ package br.com.hospital.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import br.com.hospital.model.enums.TipoServicoEnum;
 import br.com.hospital.model.interfaces.Cliente;
 import br.com.hospital.model.interfaces.Servico;
 import br.com.hospital.model.enums.FormaPagamentoEnum;
@@ -16,7 +15,7 @@ public class Fatura {
     private LocalDate dataEmissao;
     private LocalDate dataVencimento;
     private StatusCobrancaEnum statusCobranca;
-    private FormaPagamentoEnum formaPagamento;
+    public FormaPagamentoEnum formaPagamento;
     private Servico servico;
     private Cliente cliente;
 

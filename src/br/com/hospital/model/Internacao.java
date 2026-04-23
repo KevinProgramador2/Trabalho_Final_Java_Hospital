@@ -6,7 +6,7 @@ import br.com.hospital.model.enums.TipoServicoEnum;
 import br.com.hospital.model.interfaces.Servico;
 import br.com.hospital.model.interfaces.Cliente;
 
-public class Internacao implements Servico{
+public class Internacao implements Servico {
     private Integer id;
     private LocalDate dataEntrada;
     private LocalDate dataSaida;
@@ -14,7 +14,7 @@ public class Internacao implements Servico{
     private Cliente cliente;
     private Leito leito;
     private TipoServicoEnum tipoServico;
-    
+
     public Internacao(Integer id, LocalDate dataEntrada, Cliente cliente, Leito leito) {
         this.id = id;
         this.dataEntrada = dataEntrada;
@@ -25,11 +25,12 @@ public class Internacao implements Servico{
 
     @Override
     public String toString() {
-        if(dataSaida!= null)
-            return "Internacao [id=" + id + ", paciente=" + paciente + ", leito=" + leito + ", dataEntrada=" + dataEntrada + ", dataSaida="
+        if (dataSaida != null)
+            return "Internacao [id=" + id + ", paciente=" + paciente + ", leito=" + leito + ", dataEntrada="
+                    + dataEntrada + ", dataSaida="
                     + dataSaida + "]";
-        return "Internacao [id=" + id + ", paciente=" + paciente + ", leito=" + leito + ", dataEntrada=" 
-                    + dataEntrada + "]";
+        return "Internacao [id=" + id + ", paciente=" + paciente + ", leito=" + leito + ", dataEntrada="
+                + dataEntrada + "]";
     }
 
     @Override
@@ -80,7 +81,7 @@ public class Internacao implements Servico{
 
     public void darAlta(LocalDate data) {
         this.leito.liberar();
-        this.dataSaida= data;
+        this.dataSaida = data;
     }
 
     public void setTipoServico(TipoServicoEnum tipoServico) {

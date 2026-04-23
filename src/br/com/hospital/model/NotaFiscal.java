@@ -16,21 +16,23 @@ public class NotaFiscal {
     private BigDecimal valorCsll;
     private Fatura fatura;
 
-    public NotaFiscal(Hospital emissor, Cliente cliente, BigDecimal valorIss, BigDecimal valorPis, BigDecimal valorCofins,
-            BigDecimal irpj, BigDecimal csll, Fatura fatura) {
+    public NotaFiscal(Hospital emissor, Cliente cliente, BigDecimal valorIss, BigDecimal valorPis,
+            BigDecimal valorCofins,
+            BigDecimal valorIrpj, BigDecimal valorCsll, Fatura fatura) {
         this.emissor = emissor;
         this.cliente = cliente;
         this.valorIss = valorIss;
         this.valorPis = valorPis;
         this.valorCofins = valorCofins;
-        this.valorIrpj = irpj;
-        this.valorCsll = csll;
+        this.valorIrpj = valorIrpj;
+        this.valorCsll = valorCsll;
         this.fatura = fatura;
     }
 
     @Override
     public String toString() {
-        return "NotaFiscal [emissor=" + emissor.getNome() + ", cliente=" + cliente.getNome() + ", valorIss=" + valorIss + ", valorPis="
+        return "NotaFiscal [emissor=" + emissor.getNome() + ", cliente=" + cliente.getNome() + ", valorIss=" + valorIss
+                + ", valorPis="
                 + valorPis + ", valorCofins=" + valorCofins + ", valorIrpj=" + valorIrpj + ", valorCsll=" + valorCsll
                 + ", fatura=" + fatura.getNumero() + "]";
     }
@@ -101,11 +103,12 @@ public class NotaFiscal {
 
     public void calcularImpostos() {
         {
-            this.valorPis = ImpostosEnum.PIS.getValor();
-            this.valorCofins = ImpostosEnum.COFINS.getValor();
-            this.valorIss = ImpostosEnum.ISS.getValor();
-            this.valorCsll = ImpostosEnum.CSLL.getValor();
-            this.valorIrpj = ImpostosEnum.IRPJ.getValor();
+
         }
+        this.valorPis = ImpostosEnum.PIS.getValor();
+        this.valorCofins = ImpostosEnum.COFINS.getValor();
+        this.valorIss = ImpostosEnum.ISS.getValor();
+        this.valorCsll = ImpostosEnum.CSLL.getValor();
+        this.valorIrpj = ImpostosEnum.IRPJ.getValor();
     }
 }

@@ -7,10 +7,9 @@ public class Laboratorio {
     private String nome;
     private TipoLaboratorioEnum tipo;
 
-
     public Laboratorio(Integer id, String nome, TipoLaboratorioEnum tipo) {
-        this.id= id;
- 
+        this.id = id;
+
         this.nome = nome;
         this.tipo = tipo;
     }

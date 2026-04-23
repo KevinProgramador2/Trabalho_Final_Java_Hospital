@@ -1,4 +1,4 @@
-package br.com.hospital.persistence;
+package br.com.hospital.persistence.service;
 
 import java.io.File;
 import java.io.FileWriter;

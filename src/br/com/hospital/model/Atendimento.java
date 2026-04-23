@@ -1,6 +1,5 @@
 package br.com.hospital.model;
 
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,7 @@ import br.com.hospital.model.enums.TipoServicoEnum;
 import br.com.hospital.model.interfaces.Cliente;
 import br.com.hospital.model.interfaces.Servico;
 
-public class Atendimento implements Servico{
+public class Atendimento implements Servico {
     private Integer id;
     private LocalDateTime dataAtendimento;
     private TipoAtendimentoEnum tipoAtendimento;
@@ -20,7 +19,7 @@ public class Atendimento implements Servico{
     private String observacao;
     private Cliente paciente;
     private Medico medico;
-    private List<Prescricao> medicamentos= new ArrayList<>();
+    private List<Prescricao> medicamentos = new ArrayList<>();
 
     public Atendimento(Integer id, LocalDateTime dataAtendimento, TipoAtendimentoEnum tipoAtendimento,
             StatusAtendimentoEnum status, Cliente paciente, Medico medico) {

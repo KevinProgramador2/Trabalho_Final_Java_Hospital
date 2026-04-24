@@ -27,12 +27,15 @@ public class NotaFiscalDao {
                                 ImpostosEnum.CSLL.getValor(),
                                 f);
 
-                inserir(nf);
+                if(inserir(nf))
+                        return nf;
+                else
+                        return null;
 
-                return nf;
+                //!nf.eQuals(inserir(nf));
         }
 
-        public void inserir(NotaFiscal notaFiscal) {
+        public Boolean inserir(NotaFiscal notaFiscal) {
                 String sql = "insert into hospital.notaFiscal(emissor, cliente, descricao, valorBruto, iss, pis, cofins, irpj, csll, fatura_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 try {
                         PreparedStatement statement = connection.prepareStatement(sql);
@@ -52,10 +55,14 @@ public class NotaFiscalDao {
 
                         System.out.println("Dados inseridos com sucesso!");
 
+                        return true;
+
                 } catch (SQLException e) {
-                        System.err.println("Não foi possível registrar a Nota Fiscal.");
+                        System.err.println("Não foi possível registrar a Nota Fiscal. MOTIVO: Duplicada.");
                         e.printStackTrace();
                 }
+
+                return false;
         }
 
         public String getDescricao(TipoServicoEnum servico) {

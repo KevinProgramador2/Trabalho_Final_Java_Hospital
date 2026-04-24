@@ -27,8 +27,6 @@ public class NotaFiscalDao {
                                 ImpostosEnum.CSLL.getValor(),
                                 f);
 
-                nf.calcularImpostos();
-
                 inserir(nf);
 
                 return nf;

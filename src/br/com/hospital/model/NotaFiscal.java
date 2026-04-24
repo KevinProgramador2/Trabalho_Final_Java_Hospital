@@ -21,6 +21,7 @@ public class NotaFiscal {
         this.valorIrpj = valorIrpj;
         this.valorCsll = valorCsll;
         this.fatura = fatura;
+        calcularImpostos();
     }
 
     @Override
@@ -37,7 +38,6 @@ public class NotaFiscal {
             this.valorIss = fatura.getValor().multiply(ImpostosEnum.ISS.getValor());
             this.valorCsll = fatura.getValor().multiply(ImpostosEnum.CSLL.getValor());
             this.valorIrpj = fatura.getValor().multiply(ImpostosEnum.IRPJ.getValor());
-            ;
         }
     }
 

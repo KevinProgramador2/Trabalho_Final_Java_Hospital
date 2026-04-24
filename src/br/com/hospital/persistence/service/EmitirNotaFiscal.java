@@ -22,25 +22,18 @@ public class EmitirNotaFiscal {
         Integer opcao = null;
         List<NotaFiscal> listaDeNotas = new ArrayList<>();
 
-        do {
-            System.out.print("Informe o número da fatura: ");
-            String numeroFatura = s.next();
+        System.out.print("Informe o número da fatura: ");
+        String numeroFatura = s.next();
 
             try {
-
                 f = fd.buscar(numeroFatura);
 
-                if (f == null) {
-                    System.out.println("Fatura não encontrada.");
-                    continue;
-                }
+            NotaFiscal gerada = nfd.gerar(f);
 
-                NotaFiscal gerada = nfd.gerar(f);
-
-                listaDeNotas.add(gerada);
+            listaDeNotas.add(gerada);
 
             } catch (NullPointerException e) {
-                System.err.println(e.getMessage());
+                System.err.println("Não foi possível consultar a fatura. Tente novamente digitando valores válidos.");
             }
 
             System.out.println("Digite '0' para sair.");
@@ -57,9 +50,9 @@ public class EmitirNotaFiscal {
                 }
             }
 
-        } while (opcao != 0);
+        }while(opcao!=0);
 
-        exportarParaCSV(listaDeNotas, "notas_fiscais.csv");
+    exportarParaCSV(listaDeNotas, "notas_fiscais.csv");
     }
 
     public static void exportarParaCSV(List<NotaFiscal> notas, String nomeArquivo) {
@@ -77,13 +70,13 @@ public class EmitirNotaFiscal {
 
                 // Formato solicitado: <nome>;<valor>;<iss>;<pis>;<cofins>;<irpj>;<csll>
                 pw.printf(Locale.US, "%s;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f%n",
-                        nomePaciente,
-                        valorBase,
-                        valorBase.multiply(nf.getValorIss()),
-                        valorBase.multiply(nf.getValorPis()),
-                        valorBase.multiply(nf.getValorCofins()),
-                        valorBase.multiply(nf.getValorIrpj()),
-                        valorBase.multiply(nf.getValorCsll()));
+                        nf.getFatura().getCliente().getNome(),
+                        nf.getFatura().getValor(),
+                        nf.getValorIss(),
+                        nf.getValorPis(),
+                        nf.getValorCofins(),
+                        nf.getValorIrpj(),
+                        nf.getValorCsll());
             }
 
             // Força a gravação de qualquer dado restante no buffer
@@ -95,4 +88,3 @@ public class EmitirNotaFiscal {
             System.err.println("Erro crítico de I/O: " + e.getMessage());
         }
     }
-}

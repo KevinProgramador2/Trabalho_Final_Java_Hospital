@@ -14,45 +14,29 @@ import br.com.hospital.persistence.service.*;
 
 public class EmitirNotaFiscal {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         FaturaDao fd = new FaturaDao();
         NotaFiscalDao nfd = new NotaFiscalDao();
         Fatura f;
-        Integer opcao = null;
+        Integer opcao;
         List<NotaFiscal> listaDeNotas = new ArrayList<>();
 
         System.out.print("Informe o número da fatura: ");
         String numeroFatura = s.next();
 
-            try {
-                f = fd.buscar(numeroFatura);
+        try {
+            f = fd.buscar(numeroFatura);
 
             NotaFiscal gerada = nfd.gerar(f);
 
             listaDeNotas.add(gerada);
 
-            } catch (NullPointerException e) {
-                System.err.println("Não foi possível consultar a fatura. Tente novamente digitando valores válidos.");
-            }
+        } catch (NullPointerException e) {
+            System.err.println("Não foi possível consultar a fatura. Tente novamente digitando valores válidos.");
+        }
 
-            System.out.println("Digite '0' para sair.");
-            System.out.println("Digite '1' para adicionar.");
-            System.out.println("Deseja adicionar mais uma nota fiscal?");
-            opcao = s.nextInt();
-
-            if (opcao != 0 && opcao != 1) {
-                while (opcao != 0 && opcao != 1) {
-                    System.out.println("\n");
-                    System.out.print("Opção inválida. Digite novamente um valor entre '0' e '1': ");
-                    opcao = s.nextInt();
-                    System.out.println("\n");
-                }
-            }
-
-        }while(opcao!=0);
-
-    exportarParaCSV(listaDeNotas, "notas_fiscais.csv");
+        exportarParaCSV(listaDeNotas, "notas_fiscais.csv");
     }
 
     public static void exportarParaCSV(List<NotaFiscal> notas, String nomeArquivo) {
@@ -88,3 +72,4 @@ public class EmitirNotaFiscal {
             System.err.println("Erro crítico de I/O: " + e.getMessage());
         }
     }
+}

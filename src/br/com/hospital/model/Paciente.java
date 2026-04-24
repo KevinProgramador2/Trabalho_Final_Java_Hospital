@@ -2,9 +2,7 @@ package br.com.hospital.model;
 
 import java.time.LocalDate;
 
-import br.com.hospital.model.interfaces.Cliente;
-
-public class Paciente extends Pessoa implements Cliente {
+public class Paciente extends Pessoa{
     private Integer id;
 
     public Paciente(String nome, String cpf, String telefone, String endereco, LocalDate dataNascimento, Integer id) {

@@ -1,6 +1,5 @@
 package br.com.hospital.persistence.service;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,9 +21,9 @@ public class FaturaDao {
     }
     
     public Fatura buscar(String numero) {
-        String sql1= "select * from fatura where numero= ?";
-        String sql2= "select nome from cliente where id_cliente= ?";
-        String sql3= "select * from hospital where id_hospital= ?";
+        String sql1= "select * from hospital.fatura where numero= ?";
+        String sql2= "select nome from hospital.cliente where id_cliente= ?";
+        String sql3= "select * from hospital.hospital where id_hospital= ?";
         try {
             PreparedStatement statement1= connection.prepareStatement(sql1);
             statement1.setString(1, numero);
@@ -59,10 +58,10 @@ public class FaturaDao {
                 
                 Hospital hospital= new Hospital(rs1.getInt("emissor_id"), rs3.getString("nome"), rs3.getString("cnpj"));
                 
-                return new Fatura(
+                Fatura f= new Fatura(
                     rs1.getInt("id_fatura"),
                     rs1.getString("numero"), 
-                    new BigDecimal(rs1.getDouble("valor")),
+                    rs1.getBigDecimal("valor"),
                     rs1.getObject("dataemissao", LocalDate.class),
                     rs1.getObject("datavencimento", LocalDate.class),
                     StatusCobrancaEnum.valueOf(rs1.getString("statuscobranca")),
@@ -70,6 +69,16 @@ public class FaturaDao {
                     sd.consultar(rs1.getInt("servico_id")), 
                     cliente,
                     hospital);
+
+                rs1.close();
+                rs2.close();
+                rs3.close();
+                statement1.close();
+                statement2.close();
+                statement3.close();
+                connection.close();
+
+                return f;
             }
 
         } catch (SQLException e) {

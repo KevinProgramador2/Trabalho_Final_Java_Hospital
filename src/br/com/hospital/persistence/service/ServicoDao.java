@@ -16,11 +16,16 @@ public class ServicoDao {
     }
 
     public TipoServicoEnum consultar(Integer servico_id) {
-        String sql= "select tipo from servico where id_servico= ?";
+        String sql= "select tipo from hospital.servico where id_servico= ?";
         try {
             PreparedStatement statement= connection.prepareStatement(sql);
             statement.setInt(1, servico_id);
             ResultSet rs= statement.executeQuery();
+
+            if (!rs.next()) {
+                throw new Exception("Serviço não encontrado.");
+            }
+
             TipoServicoEnum tipo = TipoServicoEnum.valueOf(rs.getString("tipo"));
             
             rs.close();
@@ -30,6 +35,8 @@ public class ServicoDao {
 
         } catch (SQLException e) {
             System.err.println("ID inválido. Registro não encontrado.");
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

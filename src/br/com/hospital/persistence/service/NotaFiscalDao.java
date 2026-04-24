@@ -35,7 +35,7 @@ public class NotaFiscalDao {
         }
 
         public void inserir(NotaFiscal notaFiscal) {
-                String sql= "insert into notaFiscal(emissor, cliente, descricao, valorBrato, iss, pis, cofins, irpj, csll, fatura_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                String sql= "insert into hospital.notaFiscal(emissor, cliente, descricao, valorBruto, iss, pis, cofins, irpj, csll, fatura_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 try {
                         PreparedStatement statement= connection.prepareStatement(sql);
                         statement.setString(1, notaFiscal.getFatura().getEmissor().getNome());

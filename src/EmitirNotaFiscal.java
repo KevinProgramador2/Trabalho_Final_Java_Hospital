@@ -2,16 +2,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
 import br.com.hospital.model.*;
-import br.com.hospital.model.enums.*;
-import br.com.hospital.persistence.FaturaDao;
-import br.com.hospital.persistence.NotaFiscalDao;
+import br.com.hospital.persistence.service.*;
 
 public class EmitirNotaFiscal {
 
@@ -21,6 +18,7 @@ public class EmitirNotaFiscal {
         NotaFiscalDao nfd= new NotaFiscalDao();
         Fatura f;
         Integer opcao;
+        List<NotaFiscal> listaDeNotas = new ArrayList<>();
         
         do {
             System.out.print("Informe o número da fatura: ");
@@ -29,14 +27,13 @@ public class EmitirNotaFiscal {
             try {
                 f= fd.buscar(numeroFatura);
 
+                NotaFiscal gerada= nfd.gerar(f);
+            
+                listaDeNotas.add(gerada);
+
             } catch (NullPointerException e) {
                 System.err.println("Não foi possível consultar a fatura. Tente novamente digitando valores válidos.");
             }
-
-            NotaFiscal gerada= nfd.gerar(f);
-            
-            List<NotaFiscal> listaDeNotas = new ArrayList<>();
-            listaDeNotas.add(nf);
 
             System.out.println("Digite '0' para sair.");
             System.out.println("Digite '1' para adicionar.");
@@ -67,7 +64,7 @@ public class EmitirNotaFiscal {
             }
 
             for (NotaFiscal nf : notas) {
-                String nomePaciente = nf.getCliente().getNome();
+                String nomePaciente = nf.getFatura().getCliente().getNome();
                 BigDecimal valorBase = nf.getFatura().getValor();
 
                 // Formato solicitado: <nome>;<valor>;<iss>;<pis>;<cofins>;<irpj>;<csll>

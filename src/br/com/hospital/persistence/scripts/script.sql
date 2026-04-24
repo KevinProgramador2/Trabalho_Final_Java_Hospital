@@ -78,11 +78,6 @@ CREATE TABLE ala (
     ON DELETE RESTRICT
 );
 
-ALTER TABLE enfermeiro ADD CONSTRAINT fk_enfermeiro_ala FOREIGN KEY (ala_id) REFERENCES ala(id_ala)
-    ON DELETE RESTRICT;
-ALTER TABLE ala ADD CONSTRAINT fk_ala_responsavel FOREIGN KEY (responsavel_id) REFERENCES enfermeiro(id_enfermeiro)
-    ON DELETE RESTRICT;
-
 CREATE TABLE leito (
   id_leito SERIAL PRIMARY KEY,
   identificador VARCHAR(50) UNIQUE NOT NULL,

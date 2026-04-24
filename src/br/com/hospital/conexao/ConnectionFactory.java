@@ -3,8 +3,8 @@ package br.com.hospital.conexao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Driver;
-import java.util.Enumeration;
+//import java.sql.Driver;
+//import java.util.Enumeration;
 
 public class ConnectionFactory {
     private String url = "jdbc:postgresql://ep-sweet-feather-ac048z4u-pooler.sa-east-1.aws.neon.tech/neondb?sslmode=require";

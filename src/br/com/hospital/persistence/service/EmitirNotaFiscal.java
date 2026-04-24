@@ -14,12 +14,12 @@ import br.com.hospital.persistence.service.*;
 
 public class EmitirNotaFiscal {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner s = new Scanner(System.in);
         FaturaDao fd = new FaturaDao();
         NotaFiscalDao nfd = new NotaFiscalDao();
         Fatura f;
-        Integer opcao;
+        Integer opcao = null;
         List<NotaFiscal> listaDeNotas = new ArrayList<>();
 
         do {
@@ -27,14 +27,20 @@ public class EmitirNotaFiscal {
             String numeroFatura = s.next();
 
             try {
+
                 f = fd.buscar(numeroFatura);
+
+                if (f == null) {
+                    System.out.println("Fatura não encontrada.");
+                    continue;
+                }
 
                 NotaFiscal gerada = nfd.gerar(f);
 
                 listaDeNotas.add(gerada);
 
             } catch (NullPointerException e) {
-                System.err.println("Não foi possível consultar a fatura. Tente novamente digitando valores válidos.");
+                System.err.println(e.getMessage());
             }
 
             System.out.println("Digite '0' para sair.");

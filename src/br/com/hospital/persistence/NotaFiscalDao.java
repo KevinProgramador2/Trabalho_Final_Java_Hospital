@@ -22,12 +22,12 @@ public class NotaFiscalDao {
                 FaturaDao fd= new FaturaDao();
                 Fatura f = fd.buscar(numeroFatura);
                 NotaFiscal nf = new NotaFiscal(
-                                ImpostosEnum.ISS.getValor(),
-                                ImpostosEnum.PIS.getValor(),
-                                ImpostosEnum.COFINS.getValor(),
-                                ImpostosEnum.IRPJ.getValor(),
-                                ImpostosEnum.CSLL.getValor(),
-                                f);
+                ImpostosEnum.ISS.getValor(),
+                ImpostosEnum.PIS.getValor(),
+                ImpostosEnum.COFINS.getValor(),
+                ImpostosEnum.IRPJ.getValor(),
+                ImpostosEnum.CSLL.getValor(),
+                f);
 
                 nf.calcularImpostos();
 

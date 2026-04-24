@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.Connection;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import br.com.hospital.conexao.ConnectionFactory;
@@ -27,10 +29,12 @@ import br.com.hospital.model.enums.TipoAlaEnum;
 public class NotaFiscalDao {
 
         public static void main(String[] args) {
+                List<String> FaturaDao = new ArrayList<>();
+
                 Connection connection = new ConnectionFactory().getConnection();
                 Scanner sc = new Scanner(System.in);
 
-                Hospital h = new Hospital(1, "Hospital Geral de Clínicas", "23866957578");
+                Hospital h = new Hospital(1, "\nHospital Geral de Clínicas", "23866957578");
 
                 Enfermeiro ef = new Enfermeiro(1,
                                 "Joana D'Arc",
@@ -91,5 +95,9 @@ public class NotaFiscalDao {
                 System.out.println("CSLL:   " + valor.multiply(nf.getvalorCsll()).setScale(2, RoundingMode.HALF_UP));
 
                 System.out.println("================================");
+
+
+
+                
         }
 }

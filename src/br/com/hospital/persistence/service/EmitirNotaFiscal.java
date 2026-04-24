@@ -3,13 +3,10 @@ package br.com.hospital.persistence.service;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigDecimal;
-import java.sql.SQLException;
 import java.util.Locale;
 import java.util.Scanner;
 
 import br.com.hospital.model.*;
-import br.com.hospital.persistence.service.*;
 
 public class EmitirNotaFiscal {
 
@@ -18,7 +15,6 @@ public class EmitirNotaFiscal {
         FaturaDao fd = new FaturaDao();
         NotaFiscalDao nfd = new NotaFiscalDao();
         Fatura f;
-        Integer opcao;
 
         System.out.print("Informe o número da fatura: ");
         String numeroFatura = s.next();
@@ -35,7 +31,6 @@ public class EmitirNotaFiscal {
         } catch (Exception e) {
            e.printStackTrace();
         }
-
     }
 
     public static void exportarParaCSV(NotaFiscal nf, String nomeArquivo) {

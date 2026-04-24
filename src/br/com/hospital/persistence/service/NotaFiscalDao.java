@@ -27,12 +27,12 @@ public class NotaFiscalDao {
                                 ImpostosEnum.CSLL.getValor(),
                                 f);
 
-                if(inserir(nf))
+                if (inserir(nf))
                         return nf;
                 else
                         return null;
 
-                //!nf.eQuals(inserir(nf));
+                // !nf.eQuals(inserir(nf));
         }
 
         public Boolean inserir(NotaFiscal notaFiscal) {

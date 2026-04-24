@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.hospital.model.enums.CoberturaPlano;
-import br.com.hospital.model.interfaces.Cliente;
 
-public class PlanoSaude implements Cliente {
+public class PlanoSaude {
     private Integer id;
     private String nome;
     private String telefone;
@@ -25,12 +24,20 @@ public class PlanoSaude implements Cliente {
         return "PlanoSaude [id=" + id + ", nome=" + nome + ", telefone=" + telefone + ", cobertura=" + cobertura + "]";
     }
 
+    public void addCredenciamento(Credenciamento credenciamento) {
+        credenciamentos.add(credenciamento);
+    }
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public void setNome(String nome) {
@@ -59,20 +66,6 @@ public class PlanoSaude implements Cliente {
 
     public void setCredenciamentos(List<Credenciamento> credenciamentos) {
         this.credenciamentos = credenciamentos;
-    }
-
-    @Override
-    public Integer getIdentificador() {
-        return id;
-    }
-
-    @Override
-    public String getNome() {
-        return nome;
-    }
-
-    public void addCredenciamento(Credenciamento credenciamento) {
-        credenciamentos.add(credenciamento);
     }
 
 }

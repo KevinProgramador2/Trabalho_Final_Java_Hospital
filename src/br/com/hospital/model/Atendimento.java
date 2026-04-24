@@ -7,22 +7,20 @@ import java.util.List;
 import br.com.hospital.model.enums.StatusAtendimentoEnum;
 import br.com.hospital.model.enums.TipoAtendimentoEnum;
 import br.com.hospital.model.enums.TipoServicoEnum;
-import br.com.hospital.model.interfaces.Cliente;
-import br.com.hospital.model.interfaces.Servico;
 
-public class Atendimento implements Servico {
+public class Atendimento {
     private Integer id;
     private LocalDateTime dataAtendimento;
     private TipoAtendimentoEnum tipoAtendimento;
     private TipoServicoEnum tipoServico;
     private StatusAtendimentoEnum status;
     private String observacao;
-    private Cliente paciente;
+    private Paciente paciente;
     private Medico medico;
     private List<Prescricao> medicamentos = new ArrayList<>();
 
     public Atendimento(Integer id, LocalDateTime dataAtendimento, TipoAtendimentoEnum tipoAtendimento,
-            StatusAtendimentoEnum status, Cliente paciente, Medico medico) {
+            StatusAtendimentoEnum status, Paciente paciente, Medico medico) {
         this.id = id;
         this.dataAtendimento = dataAtendimento;
         this.tipoAtendimento = tipoAtendimento;
@@ -38,14 +36,12 @@ public class Atendimento implements Servico {
                 + ", " + medicamentos + "]";
     }
 
-    @Override
-    public Integer getIdentificador() {
-        return id;
+    public void prescreverMedicamento(Prescricao medicamento) {
+        this.medicamentos.add(medicamento);
     }
 
-    @Override
-    public TipoServicoEnum getTipoServico() {
-        return tipoServico;
+    public Integer getId() {
+        return id;
     }
 
     public void setId(Integer id) {
@@ -68,6 +64,10 @@ public class Atendimento implements Servico {
         this.tipoAtendimento = tipoAtendimento;
     }
 
+    public TipoServicoEnum getTipoServico() {
+        return tipoServico;
+    }
+
     public void setTipoServico(TipoServicoEnum tipoServico) {
         this.tipoServico = tipoServico;
     }
@@ -88,11 +88,11 @@ public class Atendimento implements Servico {
         this.observacao = observacao;
     }
 
-    public Cliente getPaciente() {
+    public Paciente getPaciente() {
         return paciente;
     }
 
-    public void setPaciente(Cliente paciente) {
+    public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
 
@@ -110,10 +110,6 @@ public class Atendimento implements Servico {
 
     public void setMedicamentos(List<Prescricao> medicamentos) {
         this.medicamentos = medicamentos;
-    }
-
-    public void prescreverMedicamento(Prescricao medicamento) {
-        this.medicamentos.add(medicamento);
     }
 
 }

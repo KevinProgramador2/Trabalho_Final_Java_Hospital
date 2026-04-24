@@ -5,24 +5,22 @@ import java.time.LocalDateTime;
 
 import br.com.hospital.model.enums.TipoExameEnum;
 import br.com.hospital.model.enums.TipoServicoEnum;
-import br.com.hospital.model.interfaces.Cliente;
-import br.com.hospital.model.interfaces.Servico;
 
 // exame foi separado de laudo para fins de facilitar
 // e porque somente Laudo depende de Exame, e não vice-versa.
-public class Exame implements Servico{
+public class Exame{
     private Integer id;
     private TipoExameEnum tipoExame;
     private BigDecimal custo;
     private String descricao;
     private LocalDateTime dataSolicitacao;
-    private Cliente paciente;
+    private Paciente paciente;
     private Medico responsavel;
     private Laboratorio laboratorio;
     private TipoServicoEnum tipoServico;
     
     public Exame(Integer id, TipoExameEnum tipoExame, BigDecimal custo, LocalDateTime dataSolicitacao,
-            Cliente paciente, Medico responsavel, Laboratorio laboratorio) {
+            Paciente paciente, Medico responsavel, Laboratorio laboratorio) {
         this.id = id;
         this.tipoExame = tipoExame;
         this.custo = custo;
@@ -39,14 +37,8 @@ public class Exame implements Servico{
                 + ", laboratorio=" + laboratorio + "]";
     }
 
-    @Override
-    public Integer getIdentificador() {
+    public Integer getId() {
         return id;
-    }
-
-    @Override
-    public TipoServicoEnum getTipoServico() {
-        return tipoServico;
     }
 
     public void setId(Integer id) {
@@ -85,11 +77,11 @@ public class Exame implements Servico{
         this.dataSolicitacao = dataSolicitacao;
     }
 
-    public Cliente getPaciente() {
+    public Paciente getPaciente() {
         return paciente;
     }
 
-    public void setPaciente(Cliente paciente) {
+    public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
 
@@ -107,6 +99,10 @@ public class Exame implements Servico{
 
     public void setLaboratorio(Laboratorio laboratorio) {
         this.laboratorio = laboratorio;
+    }
+
+    public TipoServicoEnum getTipoServico() {
+        return tipoServico;
     }
 
     public void setTipoServico(TipoServicoEnum tipoServico) {

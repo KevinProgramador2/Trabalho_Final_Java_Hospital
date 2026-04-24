@@ -304,27 +304,41 @@ insert into hospital.servico(tipo, atendimento_id, exame_id, internacao_id) valu
 ('EXAME', null, 6, null),
 ('INTERNACAO', null, null, 1);
 
+-- inserindo o registro de clientes (pode ser tanto plano de saúde quanto paciente)
+
+INSERT INTO cliente(nome, paciente_id, planoSaude_id) VALUES
+('Eduardo Ferreira', 1, NULL),
+('Fernanda Gomes', 2, NULL),
+('Gabriel Souza', 3, NULL),
+('Helena Ipanema', 4, NULL),
+('Igor Justino', 5, NULL),
+('Julia Kastro', 6, NULL),
+('Arnaldo Antunes', 7, NULL),
+('Beatriz Cavalcante', 8, NULL),
+('Claudio Castro', 9, NULL),
+('Daniela Escobar', 10, NULL);
+
 --inserindo faturas
 
-INSERT INTO hospital.fatura (numero, valor, dataemissao, datavencimento, statuscobranca, formapagamento, servico_id, paciente_id, planosaude_id) VALUES 
-('FAT-001', 100.00, '2026-04-20', '2026-05-20', 'PENDENTE', 'Dinheiro', 1, 1, NULL);
+INSERT INTO hospital.fatura (numero, valor, dataemissao, datavencimento, statuscobranca, formapagamento, servico_id, cliente_id, emissor_id) VALUES 
+('FAT-001', 100.00, '2026-04-20', '2026-05-20', 'PENDENTE', 'Dinheiro', 1, 1, 1);
 
-INSERT INTO hospital.fatura (numero, valor, dataemissao, datavencimento, statuscobranca, formapagamento, servico_id, paciente_id, planosaude_id) VALUES 
-('FAT-021', 55.00, '2026-04-20', '2026-05-20', 'PAGO', 'Pix', 2, 5, NULL),
-('FAT-022', 70.00, '2026-04-20', '2026-05-20', 'EM_ANALISE', 'Boleto', 3, 6, NULL),
-('FAT-023', 110.00, '2026-04-21', '2026-05-21', 'PENDENTE', 'Cartao', 4, 1, NULL),
-('FAT-024', 350.00, '2026-04-21', '2026-05-21', 'PAGO', 'Transfer', 5, 2, NULL),
-('FAT-025', 180.00, '2026-04-21', '2026-05-21', 'EM_ANALISE', 'Debito', 6, 3, NULL),
-('FAT-026', 220.00, '2026-04-22', '2026-05-22', 'PAGO', 'Pix', 7, 4, NULL),
-('FAT-027', 90.00, '2026-04-22', '2026-05-22', 'PENDENTE', 'Boleto', 8, 5, NULL),
-('FAT-028', 150.00, '2026-04-22', '2026-05-22', 'CANCELADO', 'Cartao', 9, 6, NULL),
-('FAT-029', 130.00, '2026-04-23', '2026-05-23', 'PAGO', 'Pix', 10, 1, NULL),
-('FAT-030', 85.00, '2026-04-23', '2026-05-23', 'EM_ANALISE', 'Debito', 11, 2, NULL),
-('FAT-031', 300.00, '2026-04-23', '2026-05-23', 'PENDENTE', 'Boleto', 12, 3, NULL),
-('FAT-032', 45.00, '2026-04-24', '2026-05-24', 'PAGO', 'Dinheiro', 13, 4, NULL),
-('FAT-033', 500.00, '2026-04-24', '2026-05-24', 'EM_ANALISE', 'Cartao', 14, 5, NULL),
-('FAT-034', 60.00, '2026-04-24', '2026-05-24', 'CANCELADO', 'Pix', 15, 6, NULL),
-('FAT-035', 1200.00, '2026-04-24', '2026-05-24', 'PENDENTE', 'Boleto', 16, 1, NULL);
+INSERT INTO hospital.fatura (numero, valor, dataemissao, datavencimento, statuscobranca, formapagamento, servico_id, cliente_id, emissor_id) VALUES 
+('FAT-021', 55.00, '2026-04-20', '2026-05-20', 'PAGO', 'Pix', 2, 5, 10),
+('FAT-022', 70.00, '2026-04-20', '2026-05-20', 'EM_ANALISE', 'Boleto', 3, 6, 9),
+('FAT-023', 110.00, '2026-04-21', '2026-05-21', 'PENDENTE', 'Cartao', 4, 1, 8),
+('FAT-024', 350.00, '2026-04-21', '2026-05-21', 'PAGO', 'Transfer', 5, 2, 7),
+('FAT-025', 180.00, '2026-04-21', '2026-05-21', 'EM_ANALISE', 'Debito', 6, 3, 6),
+('FAT-026', 220.00, '2026-04-22', '2026-05-22', 'PAGO', 'Pix', 7, 4, 6),
+('FAT-027', 90.00, '2026-04-22', '2026-05-22', 'PENDENTE', 'Boleto', 8, 5, 5),
+('FAT-028', 150.00, '2026-04-22', '2026-05-22', 'CANCELADO', 'Cartao', 9, 6, 6),
+('FAT-029', 130.00, '2026-04-23', '2026-05-23', 'PAGO', 'Pix', 10, 1, 3),
+('FAT-030', 85.00, '2026-04-23', '2026-05-23', 'EM_ANALISE', 'Debito', 11, 2, 2),
+('FAT-031', 300.00, '2026-04-23', '2026-05-23', 'PENDENTE', 'Boleto', 12, 4, 4),
+('FAT-032', 45.00, '2026-04-24', '2026-05-24', 'PAGO', 'Dinheiro', 13, 1, 7),
+('FAT-033', 500.00, '2026-04-24', '2026-05-24', 'EM_ANALISE', 'Cartao', 14, 3, 3),
+('FAT-034', 60.00, '2026-04-24', '2026-05-24', 'CANCELADO', 'Pix', 15, 6, 9),
+('FAT-035', 1200.00, '2026-04-24', '2026-05-24', 'PENDENTE', 'Boleto', 16, 1, 1);
 
 
 --inserindo credenciamento

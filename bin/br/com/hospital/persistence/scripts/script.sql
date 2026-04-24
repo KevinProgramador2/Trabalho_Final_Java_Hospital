@@ -203,6 +203,23 @@ CREATE TABLE servico (
   )
 );
 
+CREATE TABLE cliente (
+  id_cliente SERIAL PRIMARY KEY,
+  nome VARCHAR(50) NOT NULL,
+  paciente_id INT NULL,
+  planoSaude_id INT NULL,
+
+  CONSTRAINT fk_cliente_paciente FOREIGN KEY (paciente_id) REFERENCES paciente(id_paciente)
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_cliente_planoSaude FOREIGN KEY (planoSaude_id) REFERENCES planoSaude(id_planoSaude)
+    ON DELETE RESTRICT,
+  CONSTRAINT chk_cliente CHECK (
+    (paciente_id IS NOT NULL AND planoSaude_id IS NULL)
+    OR
+    (planoSaude_id IS NOT NULL AND paciente_id IS NULL)
+  )
+);
+
 CREATE TABLE fatura (
   id_fatura SERIAL PRIMARY KEY,
   numero VARCHAR(50) UNIQUE NOT NULL,
@@ -212,20 +229,15 @@ CREATE TABLE fatura (
   statusCobranca VARCHAR(20) NOT NULL,
   formaPagamento VARCHAR(20) NOT NULL,
   servico_id INT NOT NULL,
-  paciente_id INT NULL,
-  planoSaude_id INT NULL,
+  cliente_id INT NOT NULL,
+  emissor_id INT NOT NULL,
 
   CONSTRAINT fk_fatura_servico FOREIGN KEY (servico_id) REFERENCES servico(id_servico)
     ON DELETE RESTRICT,
-  CONSTRAINT fk_fatura_paciente FOREIGN KEY (paciente_id) REFERENCES paciente(id_paciente)
+  CONSTRAINT fk_fatura_cliente FOREIGN KEY (cliente_id) REFERENCES cliente(id_cliente)
     ON DELETE RESTRICT,
-  CONSTRAINT fk_fatura_planoSaude FOREIGN KEY (planoSaude_id) REFERENCES planoSaude(id_planoSaude)
-    ON DELETE RESTRICT,
-  CONSTRAINT chk_fatura_cliente CHECK (
-    (paciente_id IS NOT NULL AND planoSaude_id IS NULL)
-    OR
-    (paciente_id IS NULL AND planoSaude_id IS NOT NULL)
-  )
+  CONSTRAINT fk_fatura_emissor FOREIGN KEY (emissor_id) REFERENCES hospital(id_hospital)
+    ON DELETE RESTRICT
 );
 
 CREATE TABLE notaFiscal (

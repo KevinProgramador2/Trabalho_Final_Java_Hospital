@@ -3,10 +3,9 @@ package br.com.hospital.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import br.com.hospital.model.interfaces.Cliente;
-import br.com.hospital.model.interfaces.Servico;
 import br.com.hospital.model.enums.FormaPagamentoEnum;
 import br.com.hospital.model.enums.StatusCobrancaEnum;
+import br.com.hospital.model.enums.TipoServicoEnum;
 
 public class Fatura {
     private Integer id;
@@ -16,12 +15,13 @@ public class Fatura {
     private LocalDate dataVencimento;
     private StatusCobrancaEnum statusCobranca;
     public FormaPagamentoEnum formaPagamento;
-    private Servico servico;
+    private TipoServicoEnum servico;
     private Cliente cliente;
+    private Hospital emissor;
 
     public Fatura(Integer id, String numero, BigDecimal valor, LocalDate dataEmissao, LocalDate dataVencimento,
-            StatusCobrancaEnum statusCobranca, FormaPagamentoEnum formaPagamento, Servico servico,
-            Cliente cliente) {
+            StatusCobrancaEnum statusCobranca, FormaPagamentoEnum formaPagamento, TipoServicoEnum servico,
+            Cliente cliente, Hospital emissor) {
         this.id = id;
         this.numero = numero;
         this.valor = valor;
@@ -31,13 +31,14 @@ public class Fatura {
         this.formaPagamento = formaPagamento;
         this.servico = servico;
         this.cliente = cliente;
+        this.emissor= emissor;
     }
 
     @Override
     public String toString() {
         return "Fatura [id=" + id + ", numero=" + numero + ", valor=" + valor + ", dataEmissao=" + dataEmissao
                 + ", dataVencimento=" + dataVencimento + ", statusCobranca=" + statusCobranca + ", formaPagamento="
-                + formaPagamento + ", servico=" + servico + ", cliente=" + cliente + "]";
+                + formaPagamento + ", servico=" + servico + ", cliente=" + cliente + ", emissor=" + emissor + "]";
     }
 
     public void pagar(FormaPagamentoEnum formaPagamento) {
@@ -108,12 +109,20 @@ public class Fatura {
         this.cliente = cliente;
     }
 
-    public Servico getServico() {
+    public TipoServicoEnum getServico() {
         return servico;
     }
 
-    public void setServico(Servico servico) {
+    public void setServico(TipoServicoEnum servico) {
         this.servico = servico;
+    }
+
+    public Hospital getEmissor() {
+        return emissor;
+    }
+
+    public void setEmissor(Hospital emissor) {
+        this.emissor = emissor;
     }
 
 }

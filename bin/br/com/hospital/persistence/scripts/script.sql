@@ -230,10 +230,13 @@ CREATE TABLE fatura (
   formaPagamento VARCHAR(20) NOT NULL,
   servico_id INT NOT NULL,
   cliente_id INT NOT NULL,
+  emissor_id INT NOT NULL,
 
   CONSTRAINT fk_fatura_servico FOREIGN KEY (servico_id) REFERENCES servico(id_servico)
     ON DELETE RESTRICT,
   CONSTRAINT fk_fatura_cliente FOREIGN KEY (cliente_id) REFERENCES cliente(id_cliente)
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_fatura_emissor FOREIGN KEY (emissor_id) REFERENCES hospital(id_hospital)
     ON DELETE RESTRICT
 );
 

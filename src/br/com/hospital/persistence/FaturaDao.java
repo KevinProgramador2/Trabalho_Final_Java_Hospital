@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import br.com.hospital.conexao.ConnectionFactory;
 import br.com.hospital.model.Cliente;
 import br.com.hospital.model.Fatura;
+import br.com.hospital.model.Hospital;
 import br.com.hospital.model.enums.FormaPagamentoEnum;
 import br.com.hospital.model.enums.StatusCobrancaEnum;
 
@@ -20,8 +21,10 @@ public class FaturaDao {
         connection= new ConnectionFactory().getConnection();
     }
     
-    public Fatura consultar(String numero) {
+    public Fatura buscar(String numero) {
         String sql1= "select * from fatura where numero= ?";
+        String sql2= "select nome from cliente where id_cliente= ?";
+        String sql3= "select * from hospital where id_hospital= ?";
         try {
             PreparedStatement statement1= connection.prepareStatement(sql1);
             statement1.setString(1, numero);
@@ -36,7 +39,6 @@ public class FaturaDao {
             } else {
                 ServicoDao sd= new ServicoDao();
 
-                String sql2= "select nome from cliente where id_cliente= ?";
                 PreparedStatement statement2= connection.prepareStatement(sql2);
                 statement2.setInt(1, rs1.getInt("cliente_id"));
                 ResultSet rs2= statement2.executeQuery();
@@ -47,6 +49,16 @@ public class FaturaDao {
                 
                 Cliente cliente= new Cliente(rs1.getInt("cliente_id"), rs2.getString("nome"));
                 
+                PreparedStatement statement3= connection.prepareStatement(sql3);
+                statement3.setInt(1, rs1.getInt("emissor_id"));
+                ResultSet rs3= statement3.executeQuery();
+                
+                if (!rs3.next()) {
+                    throw new Exception("Hospital Emissor não encontrado.");
+                }
+                
+                Hospital hospital= new Hospital(rs1.getInt("emissor_id"), rs3.getString("nome"), rs3.getString("cnpj"));
+                
                 return new Fatura(
                     rs1.getInt("id_fatura"),
                     rs1.getString("numero"), 
@@ -56,7 +68,8 @@ public class FaturaDao {
                     StatusCobrancaEnum.valueOf(rs1.getString("statuscobranca")),
                     FormaPagamentoEnum.valueOf(rs1.getString("formapagamento")),
                     sd.consultar(rs1.getInt("servico_id")), 
-                    cliente);
+                    cliente,
+                    hospital);
             }
 
         } catch (SQLException e) {

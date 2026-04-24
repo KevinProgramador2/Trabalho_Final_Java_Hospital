@@ -5,9 +5,6 @@ import java.math.BigDecimal;
 import br.com.hospital.model.enums.ImpostosEnum;
 
 public class NotaFiscal {
-
-    private Hospital emissor;
-    private Cliente cliente;
     private BigDecimal valorIss;
     private BigDecimal valorPis;
     private BigDecimal valorCofins;
@@ -15,11 +12,9 @@ public class NotaFiscal {
     private BigDecimal valorCsll;
     private Fatura fatura;
 
-    public NotaFiscal(Hospital emissor, Cliente cliente, BigDecimal valorIss, BigDecimal valorPis,
+    public NotaFiscal(BigDecimal valorIss, BigDecimal valorPis,
             BigDecimal valorCofins,
             BigDecimal valorIrpj, BigDecimal valorCsll, Fatura fatura) {
-        this.emissor = emissor;
-        this.cliente = cliente;
         this.valorIss = valorIss;
         this.valorPis = valorPis;
         this.valorCofins = valorCofins;
@@ -30,26 +25,10 @@ public class NotaFiscal {
 
     @Override
     public String toString() {
-        return "NotaFiscal [emissor=" + emissor.getNome() + ", cliente=" + cliente.getNome() + ", valorIss=" + valorIss
+        return "NotaFiscal [emissor=" + fatura.getEmissor() + ", cliente=" + fatura.getCliente() + ", valorIss=" + valorIss
                 + ", valorPis="
                 + valorPis + ", valorCofins=" + valorCofins + ", valorIrpj=" + valorIrpj + ", valorCsll=" + valorCsll
                 + ", fatura=" + fatura.getNumero() + "]";
-    }
-
-    public Hospital getEmissor() {
-        return emissor;
-    }
-
-    public void setEmissor(Hospital emissor) {
-        this.emissor = emissor;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     public BigDecimal getValorIss() {
@@ -102,12 +81,11 @@ public class NotaFiscal {
 
     public void calcularImpostos() {
         {
-
+            this.valorPis = fatura.getValor().multiply(ImpostosEnum.PIS.getValor());
+            this.valorCofins = fatura.getValor().multiply(ImpostosEnum.COFINS.getValor());
+            this.valorIss = fatura.getValor().multiply(ImpostosEnum.ISS.getValor());
+            this.valorCsll = fatura.getValor().multiply(ImpostosEnum.CSLL.getValor());
+            this.valorIrpj = fatura.getValor().multiply(ImpostosEnum.IRPJ.getValor());;
         }
-        this.valorPis = ImpostosEnum.PIS.getValor();
-        this.valorCofins = ImpostosEnum.COFINS.getValor();
-        this.valorIss = ImpostosEnum.ISS.getValor();
-        this.valorCsll = ImpostosEnum.CSLL.getValor();
-        this.valorIrpj = ImpostosEnum.IRPJ.getValor();
     }
 }

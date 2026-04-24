@@ -38,7 +38,7 @@ public class FormatoDeSaidaDao {
         List<NotaFiscal> listaDeNotas = new ArrayList<>();
         listaDeNotas.add(nf);
 
-        exportarParaCSV(listaDeNotas, "notas_fiscais.csv");
+        exportarParaCSV(listaDeNotas, "notas_fiscais.csv");d
     }
 
     public static void exportarParaCSV(List<NotaFiscal> notas, String nomeArquivo) {

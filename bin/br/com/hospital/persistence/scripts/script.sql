@@ -246,9 +246,10 @@ CREATE TABLE notaFiscal (
   cofins DECIMAL(10,2) NOT NULL,
   irpj DECIMAL(10,2) NOT NULL,
   csll DECIMAL(10,2) NOT NULL,
-  fatura_id INT UNIQUE NOT NULL,
+  fatura_id INT NOT NULL,
 
   CONSTRAINT fk_notaFiscal_fatura FOREIGN KEY (fatura_id) REFERENCES fatura(id_fatura)
-    ON DELETE RESTRICT
+    ON DELETE RESTRICT,
+  CONSTRAINT unique_fatura UNIQUE (fatura_id);
 );
 

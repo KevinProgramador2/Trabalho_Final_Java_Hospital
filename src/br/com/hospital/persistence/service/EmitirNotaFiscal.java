@@ -4,8 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.SQLException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -20,40 +19,30 @@ public class EmitirNotaFiscal {
         NotaFiscalDao nfd = new NotaFiscalDao();
         Fatura f;
         Integer opcao;
-        List<NotaFiscal> listaDeNotas = new ArrayList<>();
 
         System.out.print("Informe o número da fatura: ");
         String numeroFatura = s.next();
 
-        try {
-            f = fd.buscar(numeroFatura);
+        f = fd.buscar(numeroFatura);
 
+        try {
             NotaFiscal gerada = nfd.gerar(f);
 
-            listaDeNotas.add(gerada);
-
-        } catch (NullPointerException e) {
-            System.err.println("Não foi possível consultar a fatura. Tente novamente digitando valores válidos.");
+            if(gerada!= null)
+                exportarParaCSV(gerada, "notas_fiscais.csv");
+            else
+                throw new Exception("Não foi possível gerar a Nota Fiscal. MOTIVO: Duplicada.");
+        } catch (Exception e) {
+           e.printStackTrace();
         }
 
-        exportarParaCSV(listaDeNotas, "notas_fiscais.csv");
     }
 
-    public static void exportarParaCSV(List<NotaFiscal> notas, String nomeArquivo) {
+    public static void exportarParaCSV(NotaFiscal nf, String nomeArquivo) {
         try (FileWriter fw = new FileWriter(nomeArquivo);
                 PrintWriter pw = new PrintWriter(fw)) {
 
-            if (notas.isEmpty()) {
-                System.out.println("Aviso: A lista de notas está vazia. Nada será escrito.");
-                return;
-            }
-
-            for (NotaFiscal nf : notas) {
-                String nomePaciente = nf.getFatura().getCliente().getNome();
-                BigDecimal valorBase = nf.getFatura().getValor();
-
-                // Formato solicitado: <nome>;<valor>;<iss>;<pis>;<cofins>;<irpj>;<csll>
-                pw.printf(Locale.US, "%s;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f%n",
+            pw.printf(Locale.US, "%s;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f%n",
                         nf.getFatura().getCliente().getNome(),
                         nf.getFatura().getValor(),
                         nf.getValorIss(),
@@ -61,7 +50,6 @@ public class EmitirNotaFiscal {
                         nf.getValorCofins(),
                         nf.getValorIrpj(),
                         nf.getValorCsll());
-            }
 
             // Força a gravação de qualquer dado restante no buffer
             pw.flush();

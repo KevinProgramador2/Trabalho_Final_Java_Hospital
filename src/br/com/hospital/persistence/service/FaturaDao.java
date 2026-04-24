@@ -34,7 +34,7 @@ public class FaturaDao {
             }
 
             if (StatusCobrancaEnum.valueOf(rs1.getString("statuscobranca")) != StatusCobrancaEnum.PAGO) {
-                throw new Exception("Fatura não finalizada.");
+                throw new Exception("Fatura não finalizada. Status atual: "+ rs1.getString("statuscobranca"));
             } else {
                 ServicoDao sd = new ServicoDao();
 

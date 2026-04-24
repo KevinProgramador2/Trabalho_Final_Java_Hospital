@@ -22,36 +22,19 @@ public class EmitirNotaFiscal {
         Integer opcao;
         List<NotaFiscal> listaDeNotas = new ArrayList<>();
 
-        do {
-            System.out.print("Informe o número da fatura: ");
-            String numeroFatura = s.next();
+        System.out.print("Informe o número da fatura: ");
+        String numeroFatura = s.next();
 
-            try {
-                f = fd.buscar(numeroFatura);
+        try {
+            f = fd.buscar(numeroFatura);
 
-                NotaFiscal gerada = nfd.gerar(f);
+            NotaFiscal gerada = nfd.gerar(f);
 
-                listaDeNotas.add(gerada);
+            listaDeNotas.add(gerada);
 
-            } catch (NullPointerException e) {
-                System.err.println("Não foi possível consultar a fatura. Tente novamente digitando valores válidos.");
-            }
-
-            System.out.println("Digite '0' para sair.");
-            System.out.println("Digite '1' para adicionar.");
-            System.out.println("Deseja adicionar mais uma nota fiscal?");
-            opcao = s.nextInt();
-
-            if (opcao != 0 && opcao != 1) {
-                while (opcao != 0 && opcao != 1) {
-                    System.out.println("\n");
-                    System.out.print("Opção inválida. Digite novamente um valor entre '0' e '1': ");
-                    opcao = s.nextInt();
-                    System.out.println("\n");
-                }
-            }
-
-        } while (opcao != 0);
+        } catch (NullPointerException e) {
+            System.err.println("Não foi possível consultar a fatura. Tente novamente digitando valores válidos.");
+        }
 
         exportarParaCSV(listaDeNotas, "notas_fiscais.csv");
     }
@@ -71,13 +54,13 @@ public class EmitirNotaFiscal {
 
                 // Formato solicitado: <nome>;<valor>;<iss>;<pis>;<cofins>;<irpj>;<csll>
                 pw.printf(Locale.US, "%s;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f%n",
-                        nomePaciente,
-                        valorBase,
-                        valorBase.multiply(nf.getValorIss()),
-                        valorBase.multiply(nf.getValorPis()),
-                        valorBase.multiply(nf.getValorCofins()),
-                        valorBase.multiply(nf.getValorIrpj()),
-                        valorBase.multiply(nf.getValorCsll()));
+                        nf.getFatura().getCliente().getNome(),
+                        nf.getFatura().getValor(),
+                        nf.getValorIss(),
+                        nf.getValorPis(),
+                        nf.getValorCofins(),
+                        nf.getValorIrpj(),
+                        nf.getValorCsll());
             }
 
             // Força a gravação de qualquer dado restante no buffer

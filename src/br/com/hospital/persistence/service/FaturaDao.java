@@ -1,4 +1,4 @@
-package br.com.hospital.persistence;
+package br.com.hospital.persistence.service;
 
 import java.math.BigDecimal;
 import java.sql.Connection;

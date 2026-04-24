@@ -1,4 +1,4 @@
-package br.com.hospital.persistence;
+package br.com.hospital.persistence.service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

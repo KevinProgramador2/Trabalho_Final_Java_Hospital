@@ -1,5 +1,3 @@
-package br.com.hospital.persistence;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,35 +6,53 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Scanner;
 
 import br.com.hospital.model.*;
 import br.com.hospital.model.enums.*;
+import br.com.hospital.persistence.FaturaDao;
+import br.com.hospital.persistence.NotaFiscalDao;
 
-public class FormatoDeSaidaDao {
+public class EmitirNotaFiscal {
 
     public static void main(String[] args) {
-        // 1. CRIAR OS DADOS (Sem isso o arquivo sai vazio)
-        Hospital h = new Hospital(1, "Hospital Geral de Clínicas", "23866957578");
+        Scanner s= new Scanner(System.in);
+        FaturaDao fd= new FaturaDao();
+        NotaFiscalDao nfd= new NotaFiscalDao();
+        Fatura f;
+        Integer opcao;
+        
+        do {
+            System.out.print("Informe o número da fatura: ");
+            String numeroFatura= s.next();
 
-        Paciente p = new Paciente("Laura", "1245323311", "2442663423",
-                "Rua dos minions", LocalDate.now(), 1);
+            try {
+                f= fd.buscar(numeroFatura);
 
-        // Simula um serviço para a fatura
-        BigDecimal valorTotal = new BigDecimal("5000.00");
-        Fatura f = new Fatura(1, "22322422", valorTotal, LocalDate.now(), LocalDate.now(),
-                StatusCobrancaEnum.EM_ANALISE, FormaPagamentoEnum.PIX, null, p);
+            } catch (NullPointerException e) {
+                System.err.println("Não foi possível consultar a fatura. Tente novamente digitando valores válidos.");
+            }
 
-        NotaFiscal nf = new NotaFiscal(h, p,
-                ImpostosEnum.ISS.getValor(),
-                ImpostosEnum.PIS.getValor(),
-                ImpostosEnum.COFINS.getValor(),
-                ImpostosEnum.IRPJ.getValor(),
-                ImpostosEnum.CSLL.getValor(), f);
+            NotaFiscal gerada= nfd.gerar(f);
+            
+            List<NotaFiscal> listaDeNotas = new ArrayList<>();
+            listaDeNotas.add(nf);
 
-        nf.calcularImpostos();
+            System.out.println("Digite '0' para sair.");
+            System.out.println("Digite '1' para adicionar.");
+            System.out.println("Deseja adicionar mais uma nota fiscal?");
+            opcao= s.nextInt();
 
-        List<NotaFiscal> listaDeNotas = new ArrayList<>();
-        listaDeNotas.add(nf);
+            if(opcao!= 0 && opcao!= 1) {
+                while(opcao!= 0 && opcao!= 1) {
+                    System.out.println("\n");
+                    System.out.print("Opção inválida. Digite novamente um valor entre '0' e '1': ");
+                    opcao= s.nextInt();
+                    System.out.println("\n");
+                }
+            }
+
+        } while (opcao!= 0);
 
         exportarParaCSV(listaDeNotas, "notas_fiscais.csv");
     }
